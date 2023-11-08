@@ -1,1 +1,106 @@
 @use "./variables" as *;
+////////////////////////////////////////////////// Screen Sizes ///////////
+@mixin tablet {
+    @media (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+////////////////////////////////////////////////// Font Sizes ///////////
+// Page header
+@mixin mobileH1 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+}
+
+// Subheader
+@mixin mobileH2 {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+}
+
+// labels, Links & Buttons
+@mixin mobileH3 {
+    font-size: 1.25rem;
+    line-height: 1.125rem;
+    font-weight: 600;
+}
+
+// Table Header
+@mixin mobileH4 {
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 400;
+}
+
+// Body Large
+@mixin mobileP1 {
+    font-size: 0.9375rem;
+    line-height: 1.625rem;
+    font-weight: 400;
+}
+
+//Body Medium
+@mixin mobileP2 {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+}
+
+//Body Small
+@mixin mobileP3 {
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 400;
+}
+//////////////////////////////////////////////////
+@mixin desktopH1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+}
+
+@mixin desktopH2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+}
+
+@mixin desktopH3 {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    font-weight: 600;
+}
+
+@mixin desktopH4 {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+}
+
+@mixin desktopP1 {
+    font-size: 1rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+}
+
+@mixin desktopP2 {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    font-weight: 400;
+}
+
+@mixin desktopP3 {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+}
+////////////////////////////////////////////////// Buttons ///////////
+///
