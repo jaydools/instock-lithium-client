@@ -27,3 +27,17 @@
         padding-left: 4rem;
     }
 }
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $cloud;
+
+    &__left {
+        display: flex;
+    }
+
+    &__back {
+        padding-right: 1rem;
+    }
+}

@@ -1,9 +1,23 @@
 import React from "react";
 import "./InventoryItemDetails.scss";
+import back from "../../Assets/Images/arrow_back-24px.svg";
+import edit from "../../Assets/Images/edit-24px.svg";
 
 function InventoryItemDetails() {
     return (
         <div className="item-details-container">
+            <div className="title">
+                <div className="title__left">
+                    <button className="title__back">
+                        <img src={back} alt="back button" />
+                    </button>
+                    <h1>Title</h1>
+                </div>
+                <button>
+                    <img src={edit} alt="edit button" />
+                </button>
+            </div>
+
             <div className="leftside">
                 <h4 className="item-details-container__title">ITEM DESCRIPTION:</h4>
                 <p className="item-details-container__body">
