@@ -1,2 +1,8 @@
 @use "./variables" as *;
 @use "./mixins" as *;
+@use "./typography" as *;
+
+body {
+    font-family: Titillium, Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+}
