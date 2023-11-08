@@ -1,3 +1,24 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+@mixin reset-link {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.grid {
+    &__headers {
+        display: none;
+        @include tablet {
+            display: flex;
+        }
+    }
+    &__rows {
+        list-style: none;
+        display: grid;
+    }
+    &__key {
+        @include mobileH4;
+    }
+}
