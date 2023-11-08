@@ -38,7 +38,7 @@ a {
         margin-top: 1rem;
         @include tablet {
             margin-top: 0;
-            height: 3rem;
+            height: fit-content;
         }
     }
     &__links {
