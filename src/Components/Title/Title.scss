@@ -8,6 +8,15 @@
     border-bottom: 1px solid $cloud;
     height: 92px;
 
+    &__header {
+        @include mobileH1;
+        margin-top: 1.5rem;
+
+        @include tablet {
+            @include desktopH1;
+        }
+    }
+
     &__link {
         display: flex;
     }
@@ -38,7 +47,7 @@
         margin: 1.5rem;
 
         @include tablet {
-            width: 100px;
+            width: 81px;
             border-radius: 20px;
         }
 

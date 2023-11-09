@@ -14,7 +14,7 @@ function Title() {
                             <img src={back} alt="back button" />
                         </button>
                     </Link>
-                    <h1>Title</h1>
+                    <h1 className="title__header">Title</h1>
                 </div>
                 <div>
                     <Link to="/inventory-item-edit">
