@@ -4,23 +4,34 @@ import { Link } from "react-router-dom";
 import editIcon from "../../Assets/Images/edit-24px.svg";
 import deleteIcon from "../../Assets/Images/delete_outline-24px.svg";
 
-function Grid({ fieldNames, displayNames, records, linkToDetailsPage, onEdit, onDelete }) {
+function Grid({
+    fieldNames,
+    displayNamesMobile,
+    displayNamesDesktop,
+    records,
+    linkToDetailsPage,
+    onEdit,
+    onDelete,
+}) {
     return (
         <section className="grid">
-            <ul className="grid__headers">
-                {displayNames.map((field, i) => (
-                    <li key={i} className="grid__header">
-                        {field}
-                    </li>
-                ))}
-            </ul>
+            <div className="grid__headers">
+                <ul className="grid__header-list">
+                    {displayNamesDesktop.map((field, i) => (
+                        <li key={i} className="grid__header">
+                            {field}
+                        </li>
+                    ))}
+                </ul>
+                <p className="grid__header grid__header--actions">Actions</p>
+            </div>
             <ul className="grid__rows">
                 {records.map(record => (
                     <li key={record.id} className="grid__row">
                         <dl className="grid__fields">
                             {fieldNames.map((field, i) => (
                                 <div key={i} className="grid__field">
-                                    <dt className="grid__key">{displayNames[i]}</dt>
+                                    <dt className="grid__key">{displayNamesMobile[i]}</dt>
                                     {i === 0 ? (
                                         <dd className="grid__value">
                                             <Link

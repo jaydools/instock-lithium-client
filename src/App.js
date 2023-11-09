@@ -43,8 +43,15 @@ function App() {
             <Footer />
 
             <Grid
-                fieldNames={["field1", "status", "field2", "field3"]}
-                displayNames={["Inventory Item", "Status", "Category", "QTY"]}
+                fieldNames={["field1", "status", "field2", "field3", "field4"]}
+                displayNamesMobile={["Inventory Item", "Status", "Category", "Warehouse", "QTY"]}
+                displayNamesDesktop={[
+                    "Inventory Item",
+                    "Status",
+                    "Category",
+                    "Warehouse",
+                    "Quantity",
+                ]}
                 records={[
                     {
                         id: "1",
@@ -52,6 +59,7 @@ function App() {
                         status: "In Stock",
                         field2: "value3",
                         field3: "value4",
+                        field4: "value5",
                     },
                     {
                         id: "2",
@@ -59,6 +67,7 @@ function App() {
                         status: "In Stock",
                         field2: "value3",
                         field3: "value4",
+                        field4: "value5",
                     },
                     {
                         id: "3",
@@ -66,6 +75,7 @@ function App() {
                         status: "Out of Stock",
                         field2: "value3",
                         field3: "value4",
+                        field4: "value5",
                     },
                 ]}
                 linkToDetailsPage={"/inventory"}

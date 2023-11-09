@@ -4,28 +4,84 @@
 
 .grid {
     &__headers {
+        @include desktopH4;
         display: none;
+        text-transform: uppercase;
+        color: $slate;
+        background: rgba($light-grey, 70%);
         @include tablet {
             display: flex;
+            height: 2.5rem;
+            padding: 0 2rem;
+        }
+    }
+    &__header-list {
+        display: grid;
+        grid-auto-columns: 1fr;
+        flex-grow: 1;
+    }
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        grid-row: 1 / 2;
+        &:not(.grid__header--actions) {
+            cursor: pointer;
+            &::after {
+                content: "";
+                width: 16px;
+                height: 16px;
+                background: no-repeat url("../../Assets/Images/sort-24px.svg");
+                background-position: center;
+                background-size: contain;
+            }
+        }
+        &--actions {
+            display: flex;
+            justify-content: flex-end;
+            min-width: calc(48px + 1rem);
         }
     }
     &__rows {
         list-style: none;
-        display: flex;
-        flex-direction: column;
+        display: grid;
     }
     &__row {
         border-top: 1px solid $cloud;
         padding: 1.5rem;
+        @include tablet {
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            &:first-child {
+                border-top: none;
+            }
+        }
+        &:hover {
+            background: rgba($instock-indigo, 7%);
+        }
     }
     &__fields {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+        @include tablet {
+            grid-template-columns: none;
+            grid-auto-columns: 1fr;
+            gap: 1.5rem;
+            flex-grow: 1;
+        }
     }
     &__field {
+        @include tablet {
+            grid-row: 1;
+        }
         &:nth-child(2n + 1):last-child {
             grid-column: 2 / 3;
+            @include tablet {
+                grid-column: auto;
+            }
         }
     }
     &__key {
@@ -33,6 +89,9 @@
         text-transform: uppercase;
         color: $slate;
         padding-bottom: 0.125rem;
+        @include tablet {
+            display: none;
+        }
     }
     &__value {
         @include mobileP2;
@@ -45,18 +104,26 @@
         gap: 0.25rem;
         color: $instock-indigo;
         font-weight: 600;
+        &:hover {
+            text-decoration: underline;
+        }
         &::after {
             content: "";
             width: 24px;
             height: 24px;
             background: no-repeat url("../../Assets/Images/chevron_right-24px.svg");
             background-position: center;
-            background-size: cover;
+            background-size: contain;
         }
     }
     &__buttons {
         display: flex;
         justify-content: space-between;
         margin-top: 1rem;
+        @include tablet {
+            width: calc(48px + 1rem);
+            margin: 0;
+            gap: 1rem;
+        }
     }
 }
