@@ -4,7 +4,7 @@ import back from "../../Assets/Images/arrow_back-24px.svg";
 import { ReactComponent as Edit } from "../../Assets/Images/edit-24px.svg";
 import { Link } from "react-router-dom";
 
-function Title({ pageTitle, edit, backUrl }) {
+function Title({ pageTitle, edit, backUrl, handleEdit }) {
     return (
         <div>
             <div className="title">
@@ -21,12 +21,12 @@ function Title({ pageTitle, edit, backUrl }) {
                     <h1 className="title__header">{pageTitle}</h1>
                 </div>
                 <div>
-                    <Link to="/inventory-item-edit">
-                        <button className="title__right">
+                    {handleEdit && (
+                        <button className="title__right" onClick={handleEdit}>
                             <Edit className="title__edit" />
                             <p className="title__right--hidden">{edit}</p>
                         </button>
-                    </Link>
+                    )}
                 </div>
             </div>
         </div>
