@@ -1,3 +1,42 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+.delete-container {
+    padding: 1rem;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: center;
+
+    &__cancel {
+        border-radius: 20px;
+        border: 1px solid $cloud;
+        background: $white;
+        color: $slate;
+        padding: 0.5rem 4rem 0.5rem 4rem;
+        margin-right: 0.5rem;
+    }
+
+    &__delete {
+        border-radius: 20px;
+        background-color: $red;
+        color: $white;
+        padding: 0.5rem 4rem 0.5rem 4rem;
+        margin-left: 0.5rem;
+    }
+}
