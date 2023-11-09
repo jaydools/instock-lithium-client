@@ -13,20 +13,22 @@ function InventoryItemDetails() {
                 <p className="item-details-container__body">** Electronics ** </p>
             </div>
 
-            <div className="rightside">
-                <div className="rightside__status">
-                    <h4 className="item-details-container__title">STATUS:</h4>
-                    <p className="item-details-container__body"> IN STOCK PLACEHOLDER </p>
-                </div>
+            <div className="test">
+                <div className="rightside">
+                    <div className="rightside__status">
+                        <h4 className="item-details-container__title">STATUS:</h4>
+                        <p className="item-details-container__body"> IN STOCK PLACEHOLDER </p>
+                    </div>
 
-                <div className="rightside__quantity">
-                    <h4 className="item-details-container__title">QUANTITY:</h4>
-                    <p className="item-details-container__body"> **500** </p>
+                    <div className="rightside__quantity">
+                        <h4 className="item-details-container__title">QUANTITY:</h4>
+                        <p className="item-details-container__body"> **500** </p>
+                    </div>
                 </div>
-            </div>
-            <div className="rightside__warehouse">
-                <h4 className="item-details-container__title">WAREHOUSE:</h4>
-                <p className="item-details-container__body">** Manhattan **</p>
+                <div className="rightside__warehouse">
+                    <h4 className="item-details-container__title">WAREHOUSE:</h4>
+                    <p className="item-details-container__body">** Manhattan **</p>
+                </div>
             </div>
         </div>
     );
