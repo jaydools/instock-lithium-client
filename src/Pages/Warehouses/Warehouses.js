@@ -7,7 +7,6 @@ function Warehouses() {
     const { id } = useParams();
     return (
         <div>
-            {/* INSERT YOUR COMPONENT HERE TO PREVIEW */}
             <Title
                 pageTitle="Invetory Details"
                 edit="Edit"

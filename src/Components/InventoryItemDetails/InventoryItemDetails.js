@@ -10,7 +10,7 @@ function InventoryItemDetails({ id }) {
             const { data } = await axios.get(
                 `${process.env.REACT_APP_BACKEND_URL}/api/inventories/${id}`,
             );
-            console.log(data);
+            console.log(data); /* delete later */
             setItem(data);
         }
         getItem();
@@ -24,19 +24,19 @@ function InventoryItemDetails({ id }) {
                         <h4 className="item-details-container__title">ITEM DESCRIPTION:</h4>
                         <p className="item-details-container__body">{item.description}</p>
                         <h4 className="item-details-container__title">CATEGORY:</h4>
-                        <p className="item-details-container__body">** Electronics ** </p>
+                        <p className="item-details-container__body">{item.category}</p>
                     </div>
 
                     <div className="test">
                         <div className="rightside">
                             <div className="rightside__status">
                                 <h4 className="item-details-container__title">STATUS:</h4>
-                                <p className="item-details-container__body">IN STOCK PLACEHOLDER</p>
+                                <p className="item-details-container__body">{item.status}</p>
                             </div>
 
                             <div className="rightside__quantity">
                                 <h4 className="item-details-container__title">QUANTITY:</h4>
-                                <p className="item-details-container__body"> **500** </p>
+                                <p className="item-details-container__body"> {item.quantity} </p>
                             </div>
                         </div>
                         <div className="rightside__warehouse">
@@ -46,7 +46,7 @@ function InventoryItemDetails({ id }) {
                     </div>
                 </div>
             ) : (
-                <div>Loading......</div>
+                <div>Item not found</div>
             )}
         </>
     );
