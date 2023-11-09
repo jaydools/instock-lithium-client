@@ -4,7 +4,7 @@ import InventoryItemDelete from "../../Components/InventoryItemDelete/InventoryI
 
 function InventoryPage() {
     return (
-        <div>
+        <div className="popup">
             <InventoryItemDelete />
         </div>
     );

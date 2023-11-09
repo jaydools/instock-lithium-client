@@ -2,8 +2,21 @@
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
 
+// * {
+//     @include tablet {
+//         opacity: 0.7;
+//         background-color: $instock-black;
+//     }
+// }
+
 .delete-container {
     padding: 1rem;
+    @include tablet {
+        width: 672px;
+        height: 262px;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
 }
 
 .close {
@@ -17,6 +30,10 @@
     flex-direction: column;
     justify-content: space-between;
     height: 90vh;
+
+    @include tablet {
+        height: 70%;
+    }
 }
 
 .delete-button {
