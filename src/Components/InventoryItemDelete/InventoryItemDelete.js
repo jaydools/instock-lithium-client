@@ -3,17 +3,16 @@ import "./InventoryItemDelete.scss";
 import close from "../../Assets/Images/close-24px.svg";
 import { Link } from "react-router-dom";
 
-function InventoryItemDelete() {
+function InventoryItemDelete(/* maybe pass prop here "onClose" */) {
     return (
         <div className="delete-container">
             <div className="close">
                 <Link to="/inventory-list" className="close__link">
                     <button className="close__button">
-                        <img className="close__img" src={close} />
+                        <img className="close__img" src={close} alt="Close" />
                     </button>
                 </Link>
             </div>
-
             <div className="main">
                 <div className="delete-item">
                     <h1 className="delete-item__title">Delete **Television** inventory item?</h1>

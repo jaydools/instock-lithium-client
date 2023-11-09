@@ -2,13 +2,6 @@
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
 
-// * {
-//     @include tablet {
-//         opacity: 0.7;
-//         background-color: $instock-black;
-//     }
-// }
-
 .delete-container {
     padding: 1rem;
     @include tablet {
