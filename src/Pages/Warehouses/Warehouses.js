@@ -1,8 +1,13 @@
 import React from "react";
 import "./Warehouses.scss";
+import WarehouseList from "../../Components/WarehouseList/WarehouseList";
 
 function Warehouses() {
-    return <>Title TitleSearch TitleButton WarehouseList</>;
+    return (
+        <main class="warehouses">
+            <WarehouseList />
+        </main>
+    );
 }
 
 export default Warehouses;
