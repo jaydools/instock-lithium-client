@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import editIcon from "../../Assets/Images/edit-24px.svg";
 import deleteIcon from "../../Assets/Images/delete_outline-24px.svg";
 
-function Grid({ fieldNames, records, linkToDetailsPage, onEdit, onDelete }) {
+function Grid({ fieldNames, displayNames, records, linkToDetailsPage, onEdit, onDelete }) {
     return (
         <section className="grid">
             <ul className="grid__headers">
-                {fieldNames.map((field, i) => (
+                {displayNames.map((field, i) => (
                     <li key={i} className="grid__header">
                         {field}
                     </li>
@@ -19,36 +19,34 @@ function Grid({ fieldNames, records, linkToDetailsPage, onEdit, onDelete }) {
                     <li key={record.id} className="grid__row">
                         <dl className="grid__fields">
                             {fieldNames.map((field, i) => (
-                                <div className="grid__field">
-                                    <dt className="grid__key">{field}</dt>
+                                <div key={i} className="grid__field">
+                                    <dt className="grid__key">{displayNames[i]}</dt>
                                     {i === 0 ? (
                                         <dd className="grid__value">
                                             <Link
                                                 className="grid__details-link"
-                                                to={linkToDetailsPage}
+                                                to={`${linkToDetailsPage}/${record.id}`}
                                             >
                                                 {record[field]}
                                             </Link>
                                         </dd>
                                     ) : (
-                                        <dd className="grid__value">{record[field]}</dd>
+                                        <dd
+                                            className={`grid__value ${
+                                                field.toLowerCase() === "status"
+                                                    ? record.status === "In Stock"
+                                                        ? "grid__value--in-stock"
+                                                        : "grid__value--out-of-stock"
+                                                    : ""
+                                            }`}
+                                        >
+                                            {record[field]}
+                                        </dd>
                                     )}
                                 </div>
                             ))}
                         </dl>
                         <div className="grid__buttons">
-                            <button
-                                type="button"
-                                name="delete"
-                                className="grid__button"
-                                onClick={onEdit}
-                            >
-                                <img
-                                    src={editIcon}
-                                    alt="Icon of a trash can, indicating the delete button."
-                                    className="grid__button-image"
-                                />
-                            </button>
                             <button
                                 type="button"
                                 name="edit"
@@ -58,6 +56,18 @@ function Grid({ fieldNames, records, linkToDetailsPage, onEdit, onDelete }) {
                                 <img
                                     src={deleteIcon}
                                     alt="Icon of a pencil, indicating the edit button."
+                                    className="grid__button-image"
+                                />
+                            </button>
+                            <button
+                                type="button"
+                                name="delete"
+                                className="grid__button"
+                                onClick={onEdit}
+                            >
+                                <img
+                                    src={editIcon}
+                                    alt="Icon of a trash can, indicating the delete button."
                                     className="grid__button-image"
                                 />
                             </button>

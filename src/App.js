@@ -43,14 +43,34 @@ function App() {
             <Footer />
 
             <Grid
-                fieldNames={["field1", "field2", "field3"]}
+                fieldNames={["field1", "status", "field2", "field3"]}
+                displayNames={["Inventory Item", "Status", "Category", "QTY"]}
                 records={[
-                    { id: "test", field1: "value1", field2: "value2", field3: "value3" },
-                    { id: "test", field1: "value1", field2: "value2", field3: "value3" },
-                    { id: "test", field1: "value1", field2: "value2", field3: "value3" },
-                    { id: "test", field1: "value1", field2: "value2", field3: "value3" },
-                    { id: "test", field1: "value1", field2: "value2", field3: "value3" },
+                    {
+                        id: "1",
+                        field1: "value1",
+                        status: "In Stock",
+                        field2: "value3",
+                        field3: "value4",
+                    },
+                    {
+                        id: "2",
+                        field1: "value1",
+                        status: "In Stock",
+                        field2: "value3",
+                        field3: "value4",
+                    },
+                    {
+                        id: "3",
+                        field1: "value1",
+                        status: "Out of Stock",
+                        field2: "value3",
+                        field3: "value4",
+                    },
                 ]}
+                linkToDetailsPage={"/inventory"}
+                onEdit={() => console.log("edited")}
+                onDelete={() => console.log("deleted")}
             />
         </BrowserRouter>
     );

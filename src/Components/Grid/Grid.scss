@@ -2,11 +2,6 @@
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
 
-@mixin reset-link {
-    text-decoration: inherit;
-    color: inherit;
-}
-
 .grid {
     &__headers {
         display: none;
@@ -16,9 +11,52 @@
     }
     &__rows {
         list-style: none;
+        display: flex;
+        flex-direction: column;
+    }
+    &__row {
+        border-top: 1px solid $cloud;
+        padding: 1.5rem;
+    }
+    &__fields {
         display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    &__field {
+        &:nth-child(2n + 1):last-child {
+            grid-column: 2 / 3;
+        }
     }
     &__key {
         @include mobileH4;
+        text-transform: uppercase;
+        color: $slate;
+        padding-bottom: 0.125rem;
+    }
+    &__value {
+        @include mobileP2;
+        @include status;
+        color: $instock-black;
+    }
+    &__details-link {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: $instock-indigo;
+        font-weight: 600;
+        &::after {
+            content: "";
+            width: 24px;
+            height: 24px;
+            background: no-repeat url("../../Assets/Images/chevron_right-24px.svg");
+            background-position: center;
+            background-size: cover;
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
     }
 }

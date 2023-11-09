@@ -104,3 +104,23 @@
 }
 ////////////////////////////////////////////////// Buttons ///////////
 ///
+
+////////////////////////////////////////////////// Other /////////////
+@mixin status {
+    &--in-stock {
+        font-weight: 600;
+        width: fit-content;
+        padding: 0.125rem 0.5rem;
+        border-radius: 1.25rem;
+        color: $green;
+        background-color: rgba($green, 7%);
+    }
+    &--out-of-stock {
+        font-weight: 600;
+        width: fit-content;
+        padding: 0.125rem 0.5rem;
+        border-radius: 1.25rem;
+        color: $red;
+        background-color: rgba($red, 7%);
+    }
+}
