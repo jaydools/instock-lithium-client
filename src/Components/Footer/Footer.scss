@@ -1,3 +1,9 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
