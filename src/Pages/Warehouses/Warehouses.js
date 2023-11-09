@@ -7,7 +7,7 @@ function Warehouses() {
     return (
         <body>
             {/* INSERT YOUR COMPONENT HERE TO PREVIEW */}
-            <Title />
+            <Title pageTitle="Invetory Details" edit="Edit" backUrl="/warehouses" />
             <InventoryItemDetails />
         </body>
     );

@@ -11,6 +11,7 @@
     &__header {
         @include mobileH1;
         margin-top: 1.5rem;
+        padding-left: 1.5rem;
 
         @include tablet {
             @include desktopH1;
@@ -26,7 +27,7 @@
     }
 
     &__back {
-        padding-right: 1rem;
+        margin-right: -0.5rem;
         padding-left: 1.5rem;
         background: none;
         border: none;
