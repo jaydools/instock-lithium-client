@@ -3,5 +3,5 @@
 @use "../../Styles/variables" as *;
 
 .warehouses {
-    @include site-padding;
+    @include main;
 }
