@@ -2,7 +2,6 @@
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
 
-.popup {
-    display: flex;
-    justify-content: center;
+.inventory {
+    @include main;
 }

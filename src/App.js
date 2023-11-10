@@ -12,9 +12,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<Warehouses />} />
                 <Route path="/warehouses" element={<Warehouses />} />
-                <Route path="/warehouses/:id" element={<Warehouses />} />
-                <Route path="/inventory" element={<InventoryPage />} />
-                <Route path="/inventory/:id" element={<InventoryPage />} />
+                <Route path="/warehouses/:id/*" element={<Warehouses />} />
+                <Route path="/inventory" element={<Inventory />} />
+                <Route path="/inventory/:id/*" element={<Inventory />} />
             </Routes>
             <Footer />
         </BrowserRouter>
