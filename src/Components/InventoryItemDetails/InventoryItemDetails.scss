@@ -23,6 +23,7 @@
 
     &__body {
         @include mobileP2;
+        @include status;
         color: $instock-black;
         margin: 0;
         padding-bottom: 1rem;

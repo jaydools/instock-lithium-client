@@ -38,7 +38,15 @@ function InventoryItemDetails({ id }) {
                     <div className="rightside">
                         <div className="rightside__status">
                             <h4 className="item-details-container__title">STATUS:</h4>
-                            <p className="item-details-container__body">{item.status}</p>
+                            <p
+                                className={`item-details-container__body ${
+                                    item.status === "In Stock"
+                                        ? "item-details-container__body--in-stock"
+                                        : "item-details-container__body--out-of-stock"
+                                }`}
+                            >
+                                {item.status}
+                            </p>
                         </div>
 
                         <div className="rightside__quantity">
