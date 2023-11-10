@@ -1,3 +1,70 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+.outmost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba($instock-black, 0.7);
+}
+
+.delete-container {
+    background-color: $white;
+    padding: 1rem;
+    @include tablet {
+        margin-top: 10rem;
+        width: 672px;
+        height: 262px;
+        border-radius: 4px;
+    }
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+
+    @include tablet {
+        height: 70%;
+    }
+}
+
+.delete-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+
+    @include tablet {
+        margin-bottom: 0;
+    }
+
+    &__cancel {
+        border-radius: 20px;
+        border: 1px solid $cloud;
+        background: $white;
+        color: $slate;
+        padding: 0.5rem 4rem 0.5rem 4rem;
+        margin-right: 0.5rem;
+    }
+
+    &__delete {
+        border-radius: 20px;
+        background-color: $red;
+        color: $white;
+        padding: 0.5rem 4rem 0.5rem 4rem;
+        margin-left: 0.5rem;
+    }
+}
