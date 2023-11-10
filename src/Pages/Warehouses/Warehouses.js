@@ -6,7 +6,9 @@ import WarehouseDetails from "../../Components/WarehouseDetails/WarehouseDetails
 function Warehouses() {
     const { id } = useParams();
     return (
-        <main className="warehouses">{!id ? <WarehouseList /> : <WarehouseDetails id={id} />}</main>
+        <main className="warehouses">
+            {!id ? <WarehouseList /> : <WarehouseDetails warehouseId={id} />}
+        </main>
     );
 }
 
