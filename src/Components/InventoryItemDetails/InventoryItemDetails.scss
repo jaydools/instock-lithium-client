@@ -9,7 +9,6 @@
     @include tablet {
         display: flex;
         padding: 1.25rem 2rem;
-        justify-content: space-between;
     }
 
     &__title {
@@ -24,7 +23,6 @@
 
     &__body {
         @include mobileP2;
-        @include status;
         color: $instock-black;
         margin: 0;
         padding-bottom: 1rem;
@@ -32,18 +30,21 @@
         @include tablet {
             @include desktopP2;
         }
+        @include status;
     }
 }
 
 .rightside {
     display: flex;
     flex-direction: row;
-    &__quantity {
-        padding-left: 4rem;
+    &__status {
+        width: 50%;
     }
 }
 .leftside {
+    width: 50%;
     @include tablet {
+        border-right: 1px solid $cloud;
         margin-right: 2rem;
         padding-right: 2rem;
     }
@@ -53,8 +54,6 @@
     @include tablet {
         display: flex;
         flex-direction: column;
-        border-left: 1px solid $cloud;
-        padding-left: 3rem;
-        padding-right: 3rem;
+        flex-grow: 1;
     }
 }
