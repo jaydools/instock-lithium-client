@@ -9,7 +9,7 @@ function Header() {
             <img src={logo} className="header__img"></img>
             <div className="header__categories">
                 <NavLink
-                    to="/warehouses"
+                    to="/"
                     className={({ isActive, isPending }) =>
                         isPending
                             ? "header__links"

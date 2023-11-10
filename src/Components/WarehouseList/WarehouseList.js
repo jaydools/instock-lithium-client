@@ -4,12 +4,15 @@ import Grid from "../Grid/Grid";
 import TitleSearch from "../TitleSearch/TitleSearch";
 import "./WarehouseList.scss";
 import WarehouseAdd from "../WarehouseAdd/WarehouseAdd";
+import WarehouseDelete from "../WarehouseDelete/WarehouseDelete";
 
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
     const [addingWarehouse, setAddingWarehouse] = useState(false);
 
     const toggleAddingWarehouse = () => setAddingWarehouse(!addingWarehouse);
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [selectedWarehouseID, setSelectedWarehouseID] = useState(null);
 
     useEffect(() => {
         const getWarehouses = async () => {
@@ -36,8 +39,15 @@ function WarehouseList() {
                 })),
             );
         };
-        getWarehouses();
-    }, []);
+        if (!showDeletePopup) {
+            getWarehouses();
+        }
+    }, [showDeletePopup]);
+
+    const handleDeleteClick = id => {
+        setSelectedWarehouseID(id);
+        setShowDeletePopup(true);
+    };
 
     return addingWarehouse ? (
         <WarehouseAdd handleBack={toggleAddingWarehouse} />
@@ -61,8 +71,17 @@ function WarehouseList() {
                 records={warehouses}
                 linkToDetailsPage={"/warehouses"}
                 onEdit={id => console.log(`edited ${id}`)}
-                onDelete={id => console.log(`deleted ${id}`)}
+                onDelete={handleDeleteClick}
             />
+
+            {showDeletePopup && (
+                <WarehouseDelete
+                    onClose={() => setShowDeletePopup(false)}
+                    warehouseData={warehouses.find(
+                        warehouse => warehouse.id === selectedWarehouseID,
+                    )}
+                />
+            )}
         </div>
     );
 }
