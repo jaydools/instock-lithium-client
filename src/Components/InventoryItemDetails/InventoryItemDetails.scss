@@ -9,6 +9,7 @@
     @include tablet {
         display: flex;
         padding: 1.25rem 2rem;
+        justify-content: space-between;
     }
 
     &__title {
@@ -36,18 +37,15 @@
 
 .rightside {
     display: flex;
-
+    flex-direction: row;
     &__quantity {
         padding-left: 4rem;
     }
 }
-
 .leftside {
     @include tablet {
-        width: 50%;
         margin-right: 2rem;
         padding-right: 2rem;
-        border-right: 1px solid $cloud;
     }
 }
 
@@ -55,5 +53,8 @@
     @include tablet {
         display: flex;
         flex-direction: column;
+        border-left: 1px solid $cloud;
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
 }
