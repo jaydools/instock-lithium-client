@@ -67,7 +67,7 @@ function Grid({
                                 type="button"
                                 name="edit"
                                 className="grid__button"
-                                onClick={onDelete}
+                                onClick={() => onDelete(record.id)}
                             >
                                 <img
                                     src={deleteIcon}
@@ -79,7 +79,7 @@ function Grid({
                                 type="button"
                                 name="delete"
                                 className="grid__button"
-                                onClick={onEdit}
+                                onClick={() => onEdit(record.id)}
                             >
                                 <img
                                     src={editIcon}

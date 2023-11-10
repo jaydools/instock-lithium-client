@@ -54,8 +54,8 @@ function WarehouseList() {
                 ]}
                 records={warehouses}
                 linkToDetailsPage={"/warehouses"}
-                onEdit={() => console.log("edited")}
-                onDelete={() => console.log("deleted")}
+                onEdit={id => console.log(`edited ${id}`)}
+                onDelete={id => console.log(`deleted ${id}`)}
             />
         </div>
     );
