@@ -1,3 +1,58 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+.item-details-container {
+    border-top: 1px solid $cloud;
+    padding: 1.5rem;
+
+    @include tablet {
+        display: flex;
+        padding: 1.25rem 2rem;
+    }
+
+    &__title {
+        @include mobileH4;
+        color: $slate;
+        margin: 0;
+
+        @include tablet {
+            @include desktopH4;
+        }
+    }
+
+    &__body {
+        @include mobileP2;
+        color: $instock-black;
+        margin: 0;
+        padding-bottom: 1rem;
+
+        @include tablet {
+            @include desktopP2;
+        }
+    }
+}
+
+.rightside {
+    display: flex;
+
+    &__quantity {
+        padding-left: 4rem;
+    }
+}
+
+.leftside {
+    @include tablet {
+        width: 50%;
+        margin-right: 2rem;
+        padding-right: 2rem;
+        border-right: 1px solid $cloud;
+    }
+}
+
+.test {
+    @include tablet {
+        display: flex;
+        flex-direction: column;
+    }
+}

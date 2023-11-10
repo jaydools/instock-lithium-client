@@ -3,7 +3,13 @@
 @use "../../Styles/variables" as *;
 
 .footer {
+    @include mobileP3;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2.5rem 0;
+    color: $slate;
+    @include tablet {
+        @include desktopP3;
+    }
 }

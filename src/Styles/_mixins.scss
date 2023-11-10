@@ -28,7 +28,7 @@
 
 // labels, Links & Buttons
 @mixin mobileH3 {
-    font-size: 1.25rem;
+    font-size: 0.8125rem;
     line-height: 1.125rem;
     font-weight: 600;
 }
@@ -103,4 +103,50 @@
     font-weight: 400;
 }
 ////////////////////////////////////////////////// Buttons ///////////
-///
+@mixin button {
+}
+
+////////////////////////////////////////////////// Other /////////////
+@mixin main {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: $white;
+    margin-top: -4rem;
+    box-shadow: 0px 2px 5px 0px rgba($instock-black, 0.1);
+    border-radius: 4px;
+    @include tablet {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-top: calc(-5.8125rem - 1px);
+    }
+    @include desktop {
+        margin-left: 10rem;
+        margin-right: 10rem;
+    }
+}
+
+@mixin main-padding {
+    padding: 1.5rem;
+    @include tablet {
+        padding: 1.25rem 2rem;
+    }
+}
+
+@mixin status {
+    &--in-stock {
+        font-weight: 600;
+        width: fit-content;
+        padding: 0.125rem 0.5rem;
+        border-radius: 1.25rem;
+        color: $green;
+        background-color: rgba($green, 7%);
+    }
+    &--out-of-stock {
+        font-weight: 600;
+        width: fit-content;
+        padding: 0.125rem 0.5rem;
+        border-radius: 1.25rem;
+        color: $red;
+        background-color: rgba($red, 7%);
+    }
+}

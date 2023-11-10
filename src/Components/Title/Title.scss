@@ -1,3 +1,79 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    height: 5.8125rem;
+    @include tablet {
+        padding: 1.25rem 2rem;
+    }
+
+    &__header {
+        @include mobileH1;
+
+        @include tablet {
+            @include desktopH1;
+        }
+    }
+
+    &__link {
+        display: flex;
+    }
+
+    &__left {
+        display: flex;
+    }
+
+    &__back {
+        padding-top: 0.35rem;
+        padding-right: 1rem;
+        background: none;
+        border: none;
+        outline: inherit;
+        align-self: flex-start;
+        @include tablet {
+            padding-top: 0.5rem;
+        }
+    }
+
+    &__right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.25rem;
+        background: $instock-indigo;
+        border-radius: 50%;
+        border: none;
+        outline: inherit;
+        width: 36px;
+        height: 36px;
+        padding: 0.5rem;
+
+        @include tablet {
+            width: 5.0625rem;
+            border-radius: 20px;
+        }
+
+        &--hidden {
+            display: none;
+
+            @include tablet {
+                @include desktopH3;
+                display: flex;
+                text-decoration: none;
+                color: $white;
+            }
+        }
+    }
+
+    &__edit {
+        min-width: 20px;
+        & > path {
+            fill: $white;
+        }
+    }
+}
