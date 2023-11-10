@@ -3,9 +3,13 @@ import axios from "axios";
 import Grid from "../Grid/Grid";
 import TitleSearch from "../TitleSearch/TitleSearch";
 import "./WarehouseList.scss";
+import WarehouseAdd from "../WarehouseAdd/WarehouseAdd";
 
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
+    const [addingWarehouse, setAddingWarehouse] = useState(false);
+
+    const toggleAddingWarehouse = () => setAddingWarehouse(!addingWarehouse);
 
     useEffect(() => {
         const getWarehouses = async () => {
@@ -35,13 +39,15 @@ function WarehouseList() {
         getWarehouses();
     }, []);
 
-    return (
+    return addingWarehouse ? (
+        <WarehouseAdd handleBack={toggleAddingWarehouse} />
+    ) : (
         <div className="warehouse-list">
             <TitleSearch
                 title="Warehouses"
                 handleSearch={() => {}}
                 buttonText="+ Add New Warehouse"
-                handleButton={() => {}}
+                handleButton={toggleAddingWarehouse}
             />
             <Grid
                 fieldNames={["warehouse", "address", "contact_name", "contact_info"]}

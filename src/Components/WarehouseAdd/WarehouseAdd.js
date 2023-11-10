@@ -1,17 +1,13 @@
 import React from "react";
 import "./WarehouseAdd.scss";
 
-import "../../App.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import BackIcon from "../../Assets/Images/arrow_back-24px.svg";
+import Title from "../Title/Title";
 import Error from "../../Assets/Images/error-24px.svg";
-const { v4: uuid } = require("uuid");
 
-function WarehouseAdd() {
+function WarehouseAdd({ handleBack }) {
     const API_URL = process.env.REACT_APP_BACKEND_URL;
-    const navigate = useNavigate();
 
     const [warehouse_name, setwarehouse_name] = useState("");
     const [address, setAddress] = useState("");
@@ -105,7 +101,7 @@ function WarehouseAdd() {
         }
     }, [contact_email]);
 
-    function handleAddWarehouse(event) {
+    async function handleAddWarehouse(event) {
         event.preventDefault();
 
         if (
@@ -119,30 +115,33 @@ function WarehouseAdd() {
             contact_emailError === true
         ) {
         } else {
-            axios.post(`${API_URL}/api/warehouses`, {
-                id: uuid(),
-                warehouse_name: warehouse_name,
-                address: address,
-                city: city,
-                country: country,
-                contact_name: contact_name,
-                contact_position: contact_position,
-                contact_phone: contact_phone,
-                contact_email: contact_email,
-            });
-            alert("Warehouse Added!");
-            navigate("/");
+            try {
+                await axios.post(`${API_URL}/api/warehouses`, {
+                    warehouse_name: warehouse_name,
+                    address: address,
+                    city: city,
+                    country: country,
+                    contact_name: contact_name,
+                    contact_position: contact_position,
+                    contact_phone: contact_phone,
+                    contact_email: contact_email,
+                });
+            } catch (error) {
+                console.log("Failed to post new warehouse:", error);
+            }
+            handleBack();
         }
     }
 
     return (
         <form className="whcard " onSubmit={handleAddWarehouse}>
-            <div className="whcard__wrp-header ">
+            {/* <div className="whcard__wrp-header ">
                 <Link to="/">
                     <img className="whcard__back-icon " src={BackIcon} alt="back arrow " />
                 </Link>
                 <div className="whcard__header-title ">Add Warehouse</div>
-            </div>
+            </div> */}
+            <Title pageTitle="Add Warehouse" handleBack={handleBack} />
             <div className="whcard__content-wrp">
                 <div className="whcard__details-wrp ">
                     <div className="whcard__sub-header ">Warehouse Details</div>
