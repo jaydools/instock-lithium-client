@@ -8,13 +8,11 @@ function WarehouseDelete({ warehouseData, onClose }) {
     const handleDelete = async () => {
         try {
             let res = await axios.delete(`${baseURL}warehouses/${warehouseData.id}`);
-            alert("success!");
         } catch (err) {
             console.error("unknown error... ready to explode", err);
-            alert("Failed to delete warehouse. Please try again.");
         }
 
-        onClose(); // Close the popup after deletion
+        onClose();
     };
 
     return (

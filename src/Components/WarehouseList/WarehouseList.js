@@ -7,7 +7,7 @@ import WarehouseDelete from "../WarehouseDelete/WarehouseDelete";
 
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
-    const [showDeletePopup, setShowDeletePopup] = useState(false); /*  Show modal based on state */
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [selectedWarehouseID, setSelectedWarehouseID] = useState(null);
 
     useEffect(() => {
@@ -35,10 +35,11 @@ function WarehouseList() {
                 })),
             );
         };
-        getWarehouses();
-    }, []);
+        if (!showDeletePopup) {
+            getWarehouses();
+        }
+    }, [showDeletePopup]);
 
-    /*     New handleDeleteClick. uses state to decide to show popup */
     const handleDeleteClick = id => {
         setSelectedWarehouseID(id);
         setShowDeletePopup(true);
@@ -64,9 +65,9 @@ function WarehouseList() {
                 records={warehouses}
                 linkToDetailsPage={"/warehouses"}
                 onEdit={id => console.log(`edited ${id}`)}
-                onDelete={handleDeleteClick} /* New prop */
+                onDelete={handleDeleteClick}
             />
-            {/*  Link WarehouseDelete with condition that its the current warehouse id and that it closes */}
+
             {showDeletePopup && (
                 <WarehouseDelete
                     onClose={() => setShowDeletePopup(false)}
