@@ -1,3 +1,64 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+.warehouse-details-container {
+    @include main-padding;
+    border-top: 1px solid $cloud;
+
+    @include tablet {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__address-container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+        @include tablet {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &__title {
+        @include mobileH4;
+        color: $slate;
+        margin: 0;
+
+        @include tablet {
+            @include desktopH4;
+        }
+    }
+
+    &__body {
+        @include mobileP2;
+        @include status;
+        color: $instock-black;
+        margin: 0;
+        padding-bottom: 1rem;
+
+        @include tablet {
+            padding-bottom: 0rem;
+            @include desktopP2;
+        }
+    }
+}
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__body {
+        &--padding {
+            padding-bottom: 0;
+            @include mobileP2;
+        }
+    }
+    &__contact-name {
+        @include tablet {
+            border-left: 1px solid $cloud;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+    }
+}

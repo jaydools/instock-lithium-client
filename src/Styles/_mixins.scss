@@ -140,6 +140,7 @@
         border-radius: 1.25rem;
         color: $green;
         background-color: rgba($green, 7%);
+        text-transform: uppercase;
     }
     &--out-of-stock {
         font-weight: 600;
@@ -148,5 +149,6 @@
         border-radius: 1.25rem;
         color: $red;
         background-color: rgba($red, 7%);
+        text-transform: uppercase;
     }
 }

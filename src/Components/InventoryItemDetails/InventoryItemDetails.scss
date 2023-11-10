@@ -23,7 +23,6 @@
 
     &__body {
         @include mobileP2;
-        @include status;
         color: $instock-black;
         margin: 0;
         padding-bottom: 1rem;
@@ -31,23 +30,23 @@
         @include tablet {
             @include desktopP2;
         }
+        @include status;
     }
 }
 
 .rightside {
     display: flex;
-
-    &__quantity {
-        padding-left: 4rem;
+    flex-direction: row;
+    &__status {
+        width: 50%;
     }
 }
-
 .leftside {
+    width: 50%;
     @include tablet {
-        width: 50%;
+        border-right: 1px solid $cloud;
         margin-right: 2rem;
         padding-right: 2rem;
-        border-right: 1px solid $cloud;
     }
 }
 
@@ -55,5 +54,6 @@
     @include tablet {
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
     }
 }
