@@ -65,25 +65,27 @@ function Grid({
                         <div className="grid__buttons">
                             <button
                                 type="button"
-                                name="edit"
+                                name="delete"
                                 className="grid__button"
-                                onClick={() => onDelete(record.id)}
+                                onClick={() => {
+                                    onDelete(record.id);
+                                }}
                             >
                                 <img
                                     src={deleteIcon}
-                                    alt="Icon of a pencil, indicating the edit button."
+                                    alt="Icon of a trash can, indicating the delete button."
                                     className="grid__button-image"
                                 />
                             </button>
                             <button
                                 type="button"
-                                name="delete"
+                                name="edit"
                                 className="grid__button"
                                 onClick={() => onEdit(record.id)}
                             >
                                 <img
                                     src={editIcon}
-                                    alt="Icon of a trash can, indicating the delete button."
+                                    alt="Icon of a pencil, indicating the edit button."
                                     className="grid__button-image"
                                 />
                             </button>
