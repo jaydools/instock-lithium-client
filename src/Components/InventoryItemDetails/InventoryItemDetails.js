@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Title from "../Title/Title";
 import "./InventoryItemDetails.scss";
 import axios from "axios";
 
 function InventoryItemDetails({ id }) {
     const [item, setItem] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function getItem() {
             const { data } = await axios.get(
                 `${process.env.REACT_APP_BACKEND_URL}/api/inventories/${id}`,
             );
-            console.log(data); /* delete later */
             setItem(data);
         }
         getItem();
@@ -19,11 +20,10 @@ function InventoryItemDetails({ id }) {
 
     return item.description ? (
         <>
-            {" "}
             <Title
                 pageTitle={item.item_name}
                 edit="Edit"
-                backUrl="/inventory"
+                handleBack={() => navigate(-1)}
                 handleEdit={() => {}}
             />
             <div className="item-details-container">

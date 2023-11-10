@@ -47,10 +47,9 @@
         display: grid;
     }
     &__row {
+        @include main-padding;
         border-top: 1px solid $cloud;
-        padding: 1.5rem;
         @include tablet {
-            padding: 1.25rem 2rem;
             display: flex;
             align-items: center;
             gap: 1.5rem;
@@ -65,8 +64,9 @@
     &__fields {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        grid-auto-flow: dense;
         @include tablet {
+            align-items: center;
             grid-template-columns: none;
             grid-auto-columns: 1fr;
             gap: 1.5rem;
@@ -74,10 +74,18 @@
         }
     }
     &__field {
+        overflow-wrap: anywhere;
+
         @include tablet {
             grid-row: 1;
         }
-        &:nth-child(2n + 1):last-child {
+        &:not(&--right) {
+            grid-column: 1 / 2;
+            @include tablet {
+                grid-column: auto;
+            }
+        }
+        &--right {
             grid-column: 2 / 3;
             @include tablet {
                 grid-column: auto;
@@ -120,6 +128,7 @@
         display: flex;
         justify-content: space-between;
         margin-top: 1rem;
+
         @include tablet {
             width: calc(48px + 1rem);
             margin: 0;

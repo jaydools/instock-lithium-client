@@ -29,8 +29,13 @@ function Grid({
                 {records.map(record => (
                     <li key={record.id} className="grid__row">
                         <dl className="grid__fields">
-                            {fieldNames.map((field, i) => (
-                                <div key={i} className="grid__field">
+                            {fieldNames.map((field, i, arr) => (
+                                <div
+                                    key={i}
+                                    className={`grid__field ${
+                                        i >= Math.floor(arr.length / 2) ? "grid__field--right" : ""
+                                    }`}
+                                >
                                     <dt className="grid__key">{displayNamesMobile[i]}</dt>
                                     {i === 0 ? (
                                         <dd className="grid__value">

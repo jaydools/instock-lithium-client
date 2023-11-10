@@ -10,11 +10,12 @@ a {
     &__background {
         text-align: center;
         background-color: $graphite;
-        padding-top: 1rem;
+        padding-top: 1.5rem;
         height: 12.5rem;
         @include tablet {
             height: 11.625rem;
             text-align: left;
+            padding-top: 1.6rem;
             padding-left: 2rem;
             padding-right: 2rem;
             display: flex;
@@ -33,11 +34,13 @@ a {
         }
     }
     &__categories {
+        @include mobileH3;
         display: flex;
-        color: $white;
+        color: $cloud;
         justify-content: center;
         margin-top: 1rem;
         @include tablet {
+            @include desktopH3;
             margin-top: 0;
             height: fit-content;
         }
@@ -46,6 +49,7 @@ a {
         margin: 0.5rem 2rem;
 
         &--active {
+            color: $white;
             background-color: $instock-black;
             text-decoration: none !important;
             border-radius: 5rem;

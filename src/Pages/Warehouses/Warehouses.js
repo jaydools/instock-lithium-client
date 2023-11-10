@@ -5,8 +5,9 @@ import WarehouseDetails from "../../Components/WarehouseDetails/WarehouseDetails
 
 function Warehouses() {
     const { id } = useParams();
-    return <main className="warehouses">{!id ? <WarehouseList /> : <WarehouseDetails />}</main>;
-    return;
+    return (
+        <main className="warehouses">{!id ? <WarehouseList /> : <WarehouseDetails id={id} />}</main>
+    );
 }
 
 export default Warehouses;

@@ -1,49 +1,59 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Grid from "../Grid/Grid";
-import Title from "../Title/Title";
+import TitleSearch from "../TitleSearch/TitleSearch";
 import "./WarehouseList.scss";
 
 function WarehouseList() {
+    const [warehouses, setWarehouses] = useState([]);
+
+    useEffect(() => {
+        const getWarehouses = async () => {
+            const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/warehouses`);
+            setWarehouses(
+                data.map(warehouse => ({
+                    id: warehouse.id,
+                    warehouse: warehouse.warehouse_name,
+                    address: (
+                        <>
+                            {warehouse.address}
+                            <br />
+                            {warehouse.city}, {warehouse.country}
+                        </>
+                    ),
+                    contact_name: warehouse.contact_name,
+                    contact_info: (
+                        <>
+                            {warehouse.contact_phone}
+                            <br />
+                            {warehouse.contact_email}
+                        </>
+                    ),
+                })),
+            );
+        };
+        getWarehouses();
+    }, []);
+
     return (
         <div className="warehouse-list">
-            <Title />
+            <TitleSearch
+                title="Warehouses"
+                handleSearch={() => {}}
+                buttonText="+ Add New Warehouse"
+                handleButton={() => {}}
+            />
             <Grid
-                fieldNames={["field1", "status", "field2", "field3", "field4"]}
-                displayNamesMobile={["Inventory Item", "Status", "Category", "Warehouse", "QTY"]}
+                fieldNames={["warehouse", "address", "contact_name", "contact_info"]}
+                displayNamesMobile={["Warehouse", "Address", "Contact Name", "Contact Information"]}
                 displayNamesDesktop={[
-                    "Inventory Item",
-                    "Status",
-                    "Category",
                     "Warehouse",
-                    "Quantity",
+                    "Address",
+                    "Contact Name",
+                    "Contact Information",
                 ]}
-                records={[
-                    {
-                        id: "1",
-                        field1: "value1",
-                        status: "In Stock",
-                        field2: "value3",
-                        field3: "value4",
-                        field4: "value5",
-                    },
-                    {
-                        id: "2",
-                        field1: "value1",
-                        status: "In Stock",
-                        field2: "value3",
-                        field3: "value4",
-                        field4: "value5",
-                    },
-                    {
-                        id: "3",
-                        field1: "value1",
-                        status: "Out of Stock",
-                        field2: "value3",
-                        field3: "value4",
-                        field4: "value5",
-                    },
-                ]}
-                linkToDetailsPage={"/inventory"}
+                records={warehouses}
+                linkToDetailsPage={"/warehouses"}
                 onEdit={() => console.log("edited")}
                 onDelete={() => console.log("deleted")}
             />

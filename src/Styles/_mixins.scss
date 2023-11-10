@@ -125,6 +125,13 @@
     }
 }
 
+@mixin main-padding {
+    padding: 1.5rem;
+    @include tablet {
+        padding: 1.25rem 2rem;
+    }
+}
+
 @mixin status {
     &--in-stock {
         font-weight: 600;
