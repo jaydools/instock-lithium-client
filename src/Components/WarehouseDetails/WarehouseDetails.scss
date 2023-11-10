@@ -44,10 +44,22 @@
         }
     }
 }
+
+.warehouse-container {
+    width: 40%;
+    @include tablet {
+        border-right: 1px solid $cloud;
+        margin-right: 2rem;
+        padding-right: 2rem;
+    }
+}
 .contact-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @include tablet {
+        padding-right: 5rem;
+    }
     &__body {
         &--padding {
             padding-bottom: 0;
@@ -56,8 +68,8 @@
     }
     &__contact-name {
         @include tablet {
-            border-left: 1px solid $cloud;
-            padding-left: 3rem;
+            // border-left: 1px solid $cloud;
+            // padding-left: 3rem;
             padding-right: 3rem;
         }
     }
