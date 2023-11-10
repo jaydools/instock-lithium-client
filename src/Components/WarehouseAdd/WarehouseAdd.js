@@ -37,70 +37,6 @@ function WarehouseAdd({ handleBack }) {
         return re.test(contact_email);
     }
 
-    useEffect(() => {
-        if (warehouse_name !== "") {
-            setwarehouse_nameError(null);
-        } else {
-            setwarehouse_nameError(true);
-        }
-    }, [warehouse_name]);
-
-    useEffect(() => {
-        if (address !== "") {
-            setAddressError(null);
-        } else {
-            setAddressError(true);
-        }
-    }, [address]);
-
-    useEffect(() => {
-        if (city !== "") {
-            setcityError(null);
-        } else {
-            setcityError(true);
-        }
-    }, [city]);
-
-    useEffect(() => {
-        if (country !== "") {
-            setCountryError(null);
-        } else {
-            setCountryError(true);
-        }
-    }, [country]);
-
-    useEffect(() => {
-        if (contact_name !== "") {
-            setContact_nameError(null);
-        } else {
-            setContact_nameError(true);
-        }
-    }, [contact_name]);
-
-    useEffect(() => {
-        if (contact_position !== "") {
-            setContact_PositionError(null);
-        } else {
-            setContact_PositionError(true);
-        }
-    }, [contact_position]);
-
-    useEffect(() => {
-        if (validatecontact_phoneNumber(contact_phone) !== false) {
-            setContact_phoneError(null);
-        } else {
-            setContact_phoneError(true);
-        }
-    }, [contact_phone]);
-
-    useEffect(() => {
-        if (validatecontact_email(contact_email) !== false) {
-            setContact_emailError(null);
-        } else {
-            setContact_emailError(true);
-        }
-    }, [contact_email]);
-
     async function handleAddWarehouse(event) {
         event.preventDefault();
 
@@ -135,12 +71,6 @@ function WarehouseAdd({ handleBack }) {
 
     return (
         <form className="whcard " onSubmit={handleAddWarehouse}>
-            {/* <div className="whcard__wrp-header ">
-                <Link to="/">
-                    <img className="whcard__back-icon " src={BackIcon} alt="back arrow " />
-                </Link>
-                <div className="whcard__header-title ">Add Warehouse</div>
-            </div> */}
             <Title pageTitle="Add Warehouse" handleBack={handleBack} />
             <div className="whcard__content-wrp">
                 <div className="whcard__details-wrp ">
