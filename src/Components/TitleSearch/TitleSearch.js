@@ -2,10 +2,10 @@ import React from "react";
 import "./TitleSearch.scss";
 import searchIcon from "../../Assets/Images/search-24px.svg";
 
-function TitleSearch({ title, handleSearch, buttonText, handleButton }) {
+function TitleSearch({ pageTitle, handleSearch, buttonText, handleButton }) {
     return (
         <div className="title-search">
-            <h1 className="title-search__heading">Warehouses</h1>
+            <h1 className="title-search__heading">{pageTitle}</h1>
             <search className="title-search__search">
                 <form action="" className="title-search__form" onSubmit={handleSearch}>
                     <label className="title-search__label">
