@@ -3,9 +3,12 @@ import axios from "axios";
 import Grid from "../Grid/Grid";
 import TitleSearch from "../TitleSearch/TitleSearch";
 import "./WarehouseList.scss";
+import WarehouseDelete from "../WarehouseDelete/WarehouseDelete";
 
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
+    const [showDeletePopup, setShowDeletePopup] = useState(false); /*  Show modal based on state */
+    const [selectedWarehouseID, setSelectedWarehouseID] = useState(null);
 
     useEffect(() => {
         const getWarehouses = async () => {
@@ -35,6 +38,12 @@ function WarehouseList() {
         getWarehouses();
     }, []);
 
+    /*     New handleDeleteClick. uses state to decide to show popup */
+    const handleDeleteClick = id => {
+        setSelectedWarehouseID(id);
+        setShowDeletePopup(true);
+    };
+
     return (
         <div className="warehouse-list">
             <TitleSearch
@@ -55,8 +64,15 @@ function WarehouseList() {
                 records={warehouses}
                 linkToDetailsPage={"/warehouses"}
                 onEdit={id => console.log(`edited ${id}`)}
-                onDelete={id => console.log(`deleted ${id}`)}
+                onDelete={handleDeleteClick} /* New prop */
             />
+            {/*  Link WarehouseDelete with condition that its the current warehouse id and that it closes */}
+            {showDeletePopup && (
+                <WarehouseDelete
+                    warehouseId={selectedWarehouseID}
+                    onClose={() => setShowDeletePopup(false)}
+                />
+            )}
         </div>
     );
 }

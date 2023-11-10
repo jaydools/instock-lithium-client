@@ -2,12 +2,25 @@
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
 
+.outmost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba($instock-black, 0.7);
+}
+
 .delete-container {
+    background-color: $white;
     padding: 1rem;
     @include tablet {
+        margin-top: 10rem;
         width: 672px;
         height: 262px;
-        border: 1px solid black;
         border-radius: 4px;
     }
 }
@@ -32,6 +45,11 @@
 .delete-button {
     display: flex;
     justify-content: center;
+    margin-bottom: 4rem;
+
+    @include tablet {
+        margin-bottom: 0;
+    }
 
     &__cancel {
         border-radius: 20px;

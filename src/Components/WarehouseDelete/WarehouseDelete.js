@@ -3,32 +3,44 @@ import "./WarehouseDelete.scss";
 import close from "../../Assets/Images/close-24px.svg";
 import { Link } from "react-router-dom";
 
-function WarehouseDelete(/* maybe pass prop here "onClose" */) {
+function WarehouseDelete({ /* warehouseId, */ onClose }) {
+    const handleDelete = async () => {
+        // API call to delete the warehouse goes here
+        onClose(); // Close the popup after deletion
+    };
+
     return (
-        <div className="delete-container">
-            <div className="close">
-                <Link to="/warehouses" className="close__link">
-                    <button className="close__button">
-                        <img className="close__img" src={close} alt="Close" />
-                    </button>
-                </Link>
-            </div>
-            <div className="main">
-                <div className="delete-item">
-                    <h1 className="delete-item__title">Delete **Television** inventory item?</h1>
-                    <p className="delete-item__body">
-                        Please confirm that you’d like to delete the **Washington** from the list of
-                        **warehouses**. You won’t be able to undo this action.
-                    </p>
+        <div className="outmost">
+            <div className="delete-container">
+                <div className="close">
+                    <div className="close__link">
+                        <button className="close__button" onClick={onClose}>
+                            <img className="close__img" src={close} alt="Close" />
+                        </button>
+                    </div>
                 </div>
-                <div className="delete-button">
-                    <Link to="/warehouses" className="delete-button__link">
-                        <button className="delete-button__cancel">Cancel</button>
-                    </Link>
-                    <Link to="/warehouses" className="delete-button__link">
-                        {/*  SEND DELETE REQUEST */}
-                        <button className="delete-button__delete">Delete</button>
-                    </Link>
+                <div className="main">
+                    <div className="delete-item">
+                        <h1 className="delete-item__title">
+                            Delete **Television** inventory item?
+                        </h1>
+                        <p className="delete-item__body">
+                            Please confirm that you’d like to delete the **Washington** from the
+                            list of **warehouses**. You won’t be able to undo this action.
+                        </p>
+                    </div>
+                    <div className="delete-button">
+                        <div className="delete-button__link">
+                            <button className="delete-button__cancel" onClick={onClose}>
+                                Cancel
+                            </button>
+                        </div>
+                        <div className="delete-button__link">
+                            <button className="delete-button__delete" onClick={handleDelete}>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
