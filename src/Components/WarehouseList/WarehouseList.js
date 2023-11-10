@@ -48,7 +48,7 @@ function WarehouseList() {
     return (
         <div className="warehouse-list">
             <TitleSearch
-                title="Warehouses"
+                pageTitle="Warehouses"
                 handleSearch={() => {}}
                 buttonText="+ Add New Warehouse"
                 handleButton={() => {}}
