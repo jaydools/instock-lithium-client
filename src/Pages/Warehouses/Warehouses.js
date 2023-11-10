@@ -1,14 +1,13 @@
-import React from "react";
-import "./Warehouses.scss";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import "./Warehouses.scss";
+import WarehouseList from "../../Components/WarehouseList/WarehouseList";
 import WarehouseDetails from "../../Components/WarehouseDetails/WarehouseDetails";
 
 function Warehouses() {
-    const { warehouseId } = useParams();
-
-    return <>{warehouseId && <WarehouseDetails warehouseId={warehouseId} />}</>;
+    const { id } = useParams();
+    return (
+        <main className="warehouses">{!id ? <WarehouseList /> : <WarehouseDetails id={id} />}</main>
+    );
 }
 
 export default Warehouses;

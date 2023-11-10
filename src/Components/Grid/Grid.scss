@@ -1,3 +1,139 @@
 @use "../../Styles/global" as *;
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
+
+.grid {
+    &__headers {
+        @include desktopH4;
+        display: none;
+        text-transform: uppercase;
+        color: $slate;
+        background: rgba($light-grey, 70%);
+        @include tablet {
+            display: flex;
+            height: 2.5rem;
+            padding: 0 2rem;
+        }
+    }
+    &__header-list {
+        display: grid;
+        grid-auto-columns: 1fr;
+        flex-grow: 1;
+    }
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        grid-row: 1 / 2;
+        &:not(.grid__header--actions) {
+            cursor: pointer;
+            &::after {
+                content: "";
+                width: 16px;
+                height: 16px;
+                background: no-repeat url("../../Assets/Images/sort-24px.svg");
+                background-position: center;
+                background-size: contain;
+            }
+        }
+        &--actions {
+            display: flex;
+            justify-content: flex-end;
+            min-width: calc(48px + 1rem);
+        }
+    }
+    &__rows {
+        list-style: none;
+        display: grid;
+    }
+    &__row {
+        @include main-padding;
+        border-top: 1px solid $cloud;
+        @include tablet {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            &:first-child {
+                border-top: none;
+            }
+        }
+        &:hover {
+            background: rgba($instock-indigo, 7%);
+        }
+    }
+    &__fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: dense;
+        gap: 1rem;
+        @include tablet {
+            align-items: center;
+            grid-template-columns: none;
+            grid-auto-columns: 1fr;
+            gap: 1.5rem;
+            flex-grow: 1;
+        }
+    }
+    &__field {
+        overflow-wrap: anywhere;
+
+        @include tablet {
+            grid-row: 1;
+        }
+        &:not(&--right) {
+            grid-column: 1 / 2;
+            @include tablet {
+                grid-column: auto;
+            }
+        }
+        &--right {
+            grid-column: 2 / 3;
+            @include tablet {
+                grid-column: auto;
+            }
+        }
+    }
+    &__key {
+        @include mobileH4;
+        text-transform: uppercase;
+        color: $slate;
+        padding-bottom: 0.125rem;
+        @include tablet {
+            display: none;
+        }
+    }
+    &__value {
+        @include mobileP2;
+        @include status;
+        color: $instock-black;
+    }
+    &__details-link {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: $instock-indigo;
+        font-weight: 600;
+        &:hover {
+            text-decoration: underline;
+        }
+        &::after {
+            content: "";
+            width: 24px;
+            height: 24px;
+            background: no-repeat url("../../Assets/Images/chevron_right-24px.svg");
+            background-position: center;
+            background-size: contain;
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+
+        @include tablet {
+            width: calc(48px + 1rem);
+            margin: 0;
+            gap: 1rem;
+        }
+    }
+}
