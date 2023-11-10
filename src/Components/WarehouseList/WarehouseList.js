@@ -69,8 +69,10 @@ function WarehouseList() {
             {/*  Link WarehouseDelete with condition that its the current warehouse id and that it closes */}
             {showDeletePopup && (
                 <WarehouseDelete
-                    warehouseId={selectedWarehouseID}
                     onClose={() => setShowDeletePopup(false)}
+                    warehouseData={warehouses.find(
+                        warehouse => warehouse.id === selectedWarehouseID,
+                    )}
                 />
             )}
         </div>
