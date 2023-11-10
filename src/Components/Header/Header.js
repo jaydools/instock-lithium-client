@@ -21,7 +21,7 @@ function Header() {
                     Warehouses
                 </NavLink>
                 <NavLink
-                    to="/inventories"
+                    to="/inventory"
                     className={({ isActive, isPending }) =>
                         isPending
                             ? "header__links"

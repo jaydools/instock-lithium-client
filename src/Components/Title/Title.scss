@@ -5,13 +5,15 @@
 .title {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid $cloud;
-    height: 92px;
+    align-items: center;
+    padding: 1.5rem;
+    height: 5.8125rem;
+    @include tablet {
+        padding: 1.25rem 2rem;
+    }
 
     &__header {
         @include mobileH1;
-        margin-top: 1.5rem;
-        padding-left: 1.5rem;
 
         @include tablet {
             @include desktopH1;
@@ -27,17 +29,22 @@
     }
 
     &__back {
-        margin-right: -0.5rem;
-        padding-left: 1.5rem;
+        padding-top: 0.35rem;
+        padding-right: 1rem;
         background: none;
         border: none;
         outline: inherit;
+        align-self: flex-start;
+        @include tablet {
+            padding-top: 0.5rem;
+        }
     }
 
     &__right {
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 0.25rem;
         background: $instock-indigo;
         border-radius: 50%;
         border: none;
@@ -45,28 +52,28 @@
         width: 36px;
         height: 36px;
         padding: 0.5rem;
-        margin: 1.5rem;
 
         @include tablet {
-            width: 81px;
+            width: 5.0625rem;
             border-radius: 20px;
         }
 
         &--hidden {
             display: none;
-            width: 100px;
 
             @include tablet {
+                @include desktopH3;
                 display: flex;
-                justify-content: center;
-                @include desktopH4;
                 text-decoration: none;
                 color: $white;
             }
         }
     }
 
-    &__edit > path {
-        fill: $white;
+    &__edit {
+        min-width: 20px;
+        & > path {
+            fill: $white;
+        }
     }
 }
