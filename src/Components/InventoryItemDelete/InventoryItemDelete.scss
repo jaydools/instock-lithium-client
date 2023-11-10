@@ -2,6 +2,18 @@
 @use "../../Styles/mixins" as *;
 @use "../../Styles/variables" as *;
 
+.outmost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba($instock-black, 0.7);
+}
+
 .delete-container {
     padding: 1rem;
     @include tablet {
