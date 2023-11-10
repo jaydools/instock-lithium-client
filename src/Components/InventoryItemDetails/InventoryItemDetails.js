@@ -48,7 +48,7 @@ function InventoryItemDetails({ id }) {
                     </div>
                     <div className="rightside__warehouse">
                         <h4 className="item-details-container__title">WAREHOUSE:</h4>
-                        <p className="item-details-container__body">** Manhattan **</p>
+                        <p className="item-details-container__body">{item.warehouse_name}</p>
                     </div>
                 </div>
             </div>
