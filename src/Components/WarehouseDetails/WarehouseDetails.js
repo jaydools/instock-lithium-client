@@ -5,11 +5,19 @@ import axios from "axios";
 import Grid from "../Grid/Grid";
 import Title from "../Title/Title";
 import "./WarehouseDetails.scss";
+import InventoryItemDelete from "../InventoryItemDelete/InventoryItemDelete";
 
 function WarehouseDetails({ warehouseId }) {
     const [warehouseFromId, setWarehouseFromId] = useState({});
     const [warehouseIdInventory, setWarehouseIdInventory] = useState([]);
     const navigate = useNavigate();
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [selectedInventoryID, setSelectedInventoryID] = useState(null);
+
+    const handleDeleteClick = id => {
+        setSelectedInventoryID(id);
+        setShowDeletePopup(true);
+    };
 
     useEffect(() => {
         const fetchWarehouseFromId = async warehouseId => {
@@ -49,7 +57,7 @@ function WarehouseDetails({ warehouseId }) {
                         handleEdit={() => {}}
                     />
                     <div className="warehouse-details-container">
-                        <div className="warehouse-container">
+                        <div>
                             <h4 className="warehouse-details-container__title">
                                 WAREHOUSE ADDRESS:
                             </h4>
@@ -92,8 +100,17 @@ function WarehouseDetails({ warehouseId }) {
                         records={warehouseIdInventory}
                         linkToDetailsPage={"/inventory"}
                         onEdit={id => console.log(`edited ${id}`)}
-                        onDelete={id => console.log(`deleted ${id}`)}
+                        onDelete={handleDeleteClick}
                     />
+
+                    {showDeletePopup && (
+                        <InventoryItemDelete
+                            onClose={() => setShowDeletePopup(false)}
+                            inventoryData={warehouseIdInventory.find(
+                                item => item.id === selectedInventoryID,
+                            )}
+                        />
+                    )}
                 </>
             ) : (
                 <p>"loading details..."</p>
