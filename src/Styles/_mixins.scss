@@ -102,8 +102,69 @@
     line-height: 1.125rem;
     font-weight: 400;
 }
-////////////////////////////////////////////////// Buttons ///////////
-@mixin button {
+////////////////////////////////////////////////// Inputs ///////////
+@mixin button($_type: "primary") {
+    @include mobileH3;
+    height: 2.25rem;
+    border-radius: 20px;
+    padding: 0 1rem;
+    @include tablet {
+        @include desktopH3;
+    }
+
+    @if $_type == "primary" {
+        background-color: $instock-indigo;
+        border: 1px solid $instock-indigo;
+        color: $white;
+        &:hover {
+            background-color: $graphite;
+            border: 1px solid $graphite;
+        }
+    }
+
+    @if $_type == "secondary" {
+        background-color: $white;
+        border: 1px solid $cloud;
+        color: $slate;
+        &:hover {
+            color: $instock-indigo;
+            border: 1px solid $instock-indigo;
+        }
+    }
+
+    @if $_type == "delete" {
+        background-color: $red;
+        border: 1px solid $red;
+        color: $white;
+        &:hover {
+            background-color: $graphite;
+            border: 1px solid $graphite;
+        }
+    }
+}
+
+@mixin field {
+    @include mobileP2;
+    border: 1px solid $cloud;
+    height: 2.25rem;
+    min-height: 2.25rem;
+    padding: 0.3125rem 0.75rem;
+    border-radius: 20px;
+    @include tablet {
+        @include desktopP2;
+    }
+    &:focus,
+    &:focus-visible {
+        outline: none;
+        border: 1px solid $instock-indigo;
+    }
+    &::placeholder {
+        color: $slate;
+    }
+
+    &--failed {
+        border: 1px solid $red;
+    }
 }
 
 ////////////////////////////////////////////////// Other /////////////

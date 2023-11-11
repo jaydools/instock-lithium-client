@@ -39,10 +39,10 @@ function WarehouseList() {
                 })),
             );
         };
-        if (!showDeletePopup) {
+        if (!showDeletePopup && !addingWarehouse) {
             getWarehouses();
         }
-    }, [showDeletePopup]);
+    }, [showDeletePopup, addingWarehouse]);
 
     const handleDeleteClick = id => {
         setSelectedWarehouseID(id);
