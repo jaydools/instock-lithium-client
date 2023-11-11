@@ -17,7 +17,6 @@ function WarehouseDetails({ warehouseId }) {
                 const response = await axios.get(
                     `${process.env.REACT_APP_BACKEND_URL}/api/warehouses/${warehouseId}`,
                 );
-                console.log(response);
                 setWarehouseFromId(response.data);
             } catch (error) {
                 console.log(error);
@@ -28,7 +27,6 @@ function WarehouseDetails({ warehouseId }) {
                 const response = await axios.get(
                     `${process.env.REACT_APP_BACKEND_URL}/api/warehouses/${warehouseId}/inventories`,
                 );
-                console.log(response);
                 setWarehouseIdInventory(response.data);
             } catch (error) {
                 console.log(error);
@@ -85,15 +83,26 @@ function WarehouseDetails({ warehouseId }) {
                             </div>
                         </div>
                     </div>
-                    <Grid
-                        fieldNames={["item_name", "category", "status", "quantity"]}
-                        displayNamesMobile={["inventory item", "category", "Status", "Qty"]}
-                        displayNamesDesktop={["inventory item", "category", "Status", "quantity"]}
-                        records={warehouseIdInventory}
-                        linkToDetailsPage={"/inventory"}
-                        onEdit={id => console.log(`edited ${id}`)}
-                        onDelete={id => console.log(`deleted ${id}`)}
-                    />
+                    {!warehouseIdInventory.length ? (
+                        <p className="empty-inventory-message">
+                            This warehouse is loading, or it has no items.
+                        </p>
+                    ) : (
+                        <Grid
+                            fieldNames={["item_name", "category", "status", "quantity"]}
+                            displayNamesMobile={["inventory item", "category", "Status", "Qty"]}
+                            displayNamesDesktop={[
+                                "inventory item",
+                                "category",
+                                "Status",
+                                "quantity",
+                            ]}
+                            records={warehouseIdInventory}
+                            linkToDetailsPage={"/inventory"}
+                            onEdit={id => console.log(`edited ${id}`)}
+                            onDelete={id => console.log(`deleted ${id}`)}
+                        />
+                    )}
                 </>
             ) : (
                 <p>"loading details..."</p>
