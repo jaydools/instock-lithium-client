@@ -1,7 +1,7 @@
 import React from "react";
 import "./WarehouseAdd.scss";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Title from "../Title/Title";
 import Error from "../../Assets/Images/error-24px.svg";
