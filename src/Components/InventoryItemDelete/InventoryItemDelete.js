@@ -11,7 +11,7 @@ function InventoryItemDelete({ inventoryData, onClose, warehouseId }) {
                 `${baseURL}warehouses/${warehouseId}/inventories/${inventoryData.id}` /*  SOMETHINGS FUCKED HERE, warehouseID is undefined in request */,
             );
         } catch (err) {
-            console.error("unknown error... ready to explode", err);
+            console.error("unknown error... initiate self destroy", err);
         }
 
         onClose();
