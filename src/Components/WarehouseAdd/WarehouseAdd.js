@@ -135,7 +135,7 @@ function WarehouseAdd({ handleBack }) {
                         )}
                     </label>
                     <label className="whcard__label ">
-                        Street Adress
+                        Street Address
                         <input
                             onChange={e => setAddress(e.target.value)}
                             value={address}
