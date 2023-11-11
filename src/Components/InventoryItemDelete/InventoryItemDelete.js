@@ -7,7 +7,9 @@ const baseURL = "http://localhost:8080/api/";
 function InventoryItemDelete({ inventoryData, onClose, warehouseId }) {
     const handleDelete = async () => {
         try {
-            let res = await axios.delete(`${baseURL}warehouses/${warehouseId}/inventories`);
+            let res = await axios.delete(
+                `${baseURL}warehouses/${warehouseId}/inventories/${inventoryData.id}` /*  SOMETHINGS FUCKED HERE, warehouseID is undefined in request */,
+            );
         } catch (err) {
             console.error("unknown error... ready to explode", err);
         }
