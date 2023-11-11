@@ -25,7 +25,6 @@ function WarehouseDetails({ warehouseId }) {
                 const response = await axios.get(
                     `${process.env.REACT_APP_BACKEND_URL}/api/warehouses/${warehouseId}`,
                 );
-                console.log(response);
                 setWarehouseFromId(response.data);
             } catch (error) {
                 console.log(error);
@@ -36,7 +35,6 @@ function WarehouseDetails({ warehouseId }) {
                 const response = await axios.get(
                     `${process.env.REACT_APP_BACKEND_URL}/api/warehouses/${warehouseId}/inventories`,
                 );
-                console.log(response);
                 setWarehouseIdInventory(response.data);
             } catch (error) {
                 console.log(error);
@@ -109,6 +107,7 @@ function WarehouseDetails({ warehouseId }) {
                             inventoryData={warehouseIdInventory.find(
                                 item => item.id === selectedInventoryID,
                             )}
+                            warehouseId={warehouseId}
                         />
                     )}
                 </>

@@ -4,10 +4,10 @@ import close from "../../Assets/Images/close-24px.svg";
 import axios from "axios";
 const baseURL = "http://localhost:8080/api/";
 
-function InventoryItemDelete({ inventoryData, onClose }) {
+function InventoryItemDelete({ inventoryData, onClose, warehouseId }) {
     const handleDelete = async () => {
         try {
-            let res = await axios.delete(`${baseURL}inventories/${inventoryData.id}`);
+            let res = await axios.delete(`${baseURL}warehouses/${warehouseId}/inventories`);
         } catch (err) {
             console.error("unknown error... ready to explode", err);
         }
