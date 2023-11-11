@@ -49,7 +49,7 @@ function WarehouseDetails({ warehouseId }) {
                         handleEdit={() => {}}
                     />
                     <div className="warehouse-details-container">
-                        <div>
+                        <div className="warehouse-container">
                             <h4 className="warehouse-details-container__title">
                                 WAREHOUSE ADDRESS:
                             </h4>
