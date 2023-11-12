@@ -2,18 +2,17 @@ import React from "react";
 import "./InventoryItemDelete.scss";
 import close from "../../Assets/Images/close-24px.svg";
 import axios from "axios";
-const baseURL = "http://localhost:8080/api/";
 
-function InventoryItemDelete({ inventoryData, onClose, warehouseId }) {
+function InventoryItemDelete({ inventoryData, onClose, endpoint }) {
     const handleDelete = async () => {
         try {
-            let res = await axios.delete(
-                `${baseURL}warehouses/${warehouseId}/inventories/${inventoryData.id}` /*  SOMETHINGS FUCKED HERE, warehouseID is undefined in request */,
-            );
+            let res = await axios.delete(endpoint);
+            if (res.status === 204) {
+                window.location.reload();
+            }
         } catch (err) {
             console.error("unknown error... initiate self destroy", err);
         }
-
         onClose();
     };
 

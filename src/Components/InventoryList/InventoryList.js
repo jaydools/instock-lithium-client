@@ -49,6 +49,7 @@ function InventoryList() {
                 <InventoryItemDelete
                     onClose={() => setShowDeletePopup(false)}
                     inventoryData={items.find(items => items.id === selectedInventoryID)}
+                    endpoint={`${process.env.REACT_APP_BACKEND_URL}/api/inventories/${selectedInventoryID}`}
                 />
             )}
         </div>

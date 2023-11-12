@@ -107,7 +107,7 @@ function WarehouseDetails({ warehouseId }) {
                             inventoryData={warehouseIdInventory.find(
                                 item => item.id === selectedInventoryID,
                             )}
-                            warehouseId={warehouseId}
+                            endpoint={`${process.env.REACT_APP_BACKEND_URL}/api/warehouses/${warehouseId}/inventories/${selectedInventoryID}`}
                         />
                     )}
                 </>
