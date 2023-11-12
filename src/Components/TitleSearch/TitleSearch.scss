@@ -26,22 +26,7 @@
         font-size: 0;
     }
     &__input {
-        @include mobileP2;
-        border: 1px solid $cloud;
-        height: 2.25rem;
-        padding: 0.3125rem 0.75rem;
-        border-radius: 20px;
-        @include tablet {
-            @include desktopP2;
-        }
-        &:focus,
-        &:focus-visible {
-            outline: none;
-            border: 1px solid $instock-indigo;
-        }
-        &::placeholder {
-            color: $slate;
-        }
+        @include field;
     }
     &__icon {
         position: absolute;
@@ -50,14 +35,7 @@
         max-width: 24px;
     }
     &__button {
-        @include mobileH3;
+        @include button;
         width: 100%;
-        height: 2.25rem;
-        border-radius: 20px;
-        background-color: $instock-indigo;
-        color: $white;
-        @include tablet {
-            @include desktopH3;
-        }
     }
 }

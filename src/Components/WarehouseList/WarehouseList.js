@@ -3,10 +3,14 @@ import axios from "axios";
 import Grid from "../Grid/Grid";
 import TitleSearch from "../TitleSearch/TitleSearch";
 import "./WarehouseList.scss";
+import WarehouseAdd from "../WarehouseAdd/WarehouseAdd";
 import WarehouseDelete from "../WarehouseDelete/WarehouseDelete";
 
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
+    const [addingWarehouse, setAddingWarehouse] = useState(false);
+
+    const toggleAddingWarehouse = () => setAddingWarehouse(!addingWarehouse);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [selectedWarehouseID, setSelectedWarehouseID] = useState(null);
 
@@ -35,23 +39,25 @@ function WarehouseList() {
                 })),
             );
         };
-        if (!showDeletePopup) {
+        if (!showDeletePopup && !addingWarehouse) {
             getWarehouses();
         }
-    }, [showDeletePopup]);
+    }, [showDeletePopup, addingWarehouse]);
 
     const handleDeleteClick = id => {
         setSelectedWarehouseID(id);
         setShowDeletePopup(true);
     };
 
-    return (
+    return addingWarehouse ? (
+        <WarehouseAdd handleBack={toggleAddingWarehouse} />
+    ) : (
         <div className="warehouse-list">
             <TitleSearch
                 pageTitle="Warehouses"
                 handleSearch={() => {}}
                 buttonText="+ Add New Warehouse"
-                handleButton={() => {}}
+                handleButton={toggleAddingWarehouse}
             />
             <Grid
                 fieldNames={["warehouse", "address", "contact_name", "contact_info"]}
