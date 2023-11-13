@@ -9,10 +9,15 @@ import WarehouseDelete from "../WarehouseDelete/WarehouseDelete";
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
     const [addingWarehouse, setAddingWarehouse] = useState(false);
-
-    const toggleAddingWarehouse = () => setAddingWarehouse(!addingWarehouse);
+    const [editingWarehouse, setEditingWarehouse] = useState(false);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [selectedWarehouseID, setSelectedWarehouseID] = useState(null);
+
+    const toggleAddingWarehouse = () => setAddingWarehouse(!addingWarehouse);
+    const toggleEditingWarehouse = warehouseId => {
+        setSelectedWarehouseID(warehouseId ?? null);
+        setEditingWarehouse(!editingWarehouse);
+    };
 
     useEffect(() => {
         const getWarehouses = async () => {
@@ -39,10 +44,10 @@ function WarehouseList() {
                 })),
             );
         };
-        if (!showDeletePopup && !addingWarehouse) {
+        if (!showDeletePopup && !addingWarehouse && !editingWarehouse) {
             getWarehouses();
         }
-    }, [showDeletePopup, addingWarehouse]);
+    }, [showDeletePopup, addingWarehouse, editingWarehouse]);
 
     const handleDeleteClick = id => {
         setSelectedWarehouseID(id);
@@ -51,6 +56,11 @@ function WarehouseList() {
 
     return addingWarehouse ? (
         <WarehouseAdd handleBack={toggleAddingWarehouse} />
+    ) : editingWarehouse && selectedWarehouseID ? (
+        <WarehouseAdd
+            selectedWarehouseId={selectedWarehouseID}
+            handleBack={toggleEditingWarehouse}
+        />
     ) : (
         <div className="warehouse-list">
             <TitleSearch
@@ -70,7 +80,7 @@ function WarehouseList() {
                 ]}
                 records={warehouses}
                 linkToDetailsPage={"/warehouses"}
-                onEdit={id => console.log(`edited ${id}`)}
+                onEdit={toggleEditingWarehouse}
                 onDelete={handleDeleteClick}
             />
 

@@ -1,12 +1,13 @@
 import React from "react";
 import "./WarehouseAdd.scss";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Title from "../Title/Title";
 import Error from "../../Assets/Images/error-24px.svg";
 
-function WarehouseAdd({ handleBack }) {
+function WarehouseAdd({ handleBack, selectedWarehouseId }) {
+    const [warehouseData, setWarehouseData] = useState({});
     const [warehouse_name, setwarehouse_name] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -107,6 +108,20 @@ function WarehouseAdd({ handleBack }) {
         }
         handleBack();
     }
+
+    useEffect(() => {
+        if (!warehouseData.id) return;
+        console.log(warehouseData);
+
+        setwarehouse_name(warehouseData.warehouse_name);
+        setAddress(warehouseData.address);
+        setCity(warehouseData.city);
+        setCountry(warehouseData.country);
+        setContact_name(warehouseData.contact_name);
+        setContact_Position(warehouseData.contact_position);
+        setContact_phone(warehouseData.contact_phone);
+        setContact_email(warehouseData.contact_email);
+    }, [warehouseData]);
 
     return (
         <form noValidate="noValidate" className="whcard " onSubmit={handleAddWarehouse}>

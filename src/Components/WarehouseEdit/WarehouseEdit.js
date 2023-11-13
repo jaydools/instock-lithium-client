@@ -37,17 +37,6 @@ function WarehouseEdit() {
         });
     }, []);
 
-    useEffect(() => {
-        setwarehouse_name(warehouseData.warehouse_name);
-        setAddress(warehouseData.address);
-        setCity(warehouseData.city);
-        setCountry(warehouseData.country);
-        setContact_name(warehouseData.contact_name);
-        setContact_Position(warehouseData.contact_position);
-        setContact_phone(warehouseData.contact_phone);
-        setContact_email(warehouseData.contact_email);
-    }, [warehouseData]);
-
     function validatecontact_phoneNumber(number) {
         const re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
         return re.test(number);
