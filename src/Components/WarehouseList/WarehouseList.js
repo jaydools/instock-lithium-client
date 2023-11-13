@@ -2,17 +2,26 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Grid from "../Grid/Grid";
 import TitleSearch from "../TitleSearch/TitleSearch";
-import "./WarehouseList.scss";
-import WarehouseAdd from "../WarehouseAdd/WarehouseAdd";
+import WarehouseForm from "../WarehouseForm/WarehouseForm";
 import WarehouseDelete from "../WarehouseDelete/WarehouseDelete";
+import "./WarehouseList.scss";
 
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
     const [addingWarehouse, setAddingWarehouse] = useState(false);
-
-    const toggleAddingWarehouse = () => setAddingWarehouse(!addingWarehouse);
+    const [editingWarehouse, setEditingWarehouse] = useState(false);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [selectedWarehouseID, setSelectedWarehouseID] = useState(null);
+
+    const toggleAddingWarehouse = () => setAddingWarehouse(!addingWarehouse);
+    const toggleEditingWarehouse = warehouseId => {
+        setSelectedWarehouseID(warehouseId ?? null);
+        setEditingWarehouse(!editingWarehouse);
+    };
+    const handleDeleteClick = id => {
+        setSelectedWarehouseID(id);
+        setShowDeletePopup(true);
+    };
 
     useEffect(() => {
         const getWarehouses = async () => {
@@ -39,18 +48,18 @@ function WarehouseList() {
                 })),
             );
         };
-        if (!showDeletePopup && !addingWarehouse) {
+        if (!showDeletePopup && !addingWarehouse && !editingWarehouse) {
             getWarehouses();
         }
-    }, [showDeletePopup, addingWarehouse]);
-
-    const handleDeleteClick = id => {
-        setSelectedWarehouseID(id);
-        setShowDeletePopup(true);
-    };
+    }, [showDeletePopup, addingWarehouse, editingWarehouse]);
 
     return addingWarehouse ? (
-        <WarehouseAdd handleBack={toggleAddingWarehouse} />
+        <WarehouseForm handleBack={toggleAddingWarehouse} />
+    ) : editingWarehouse && selectedWarehouseID ? (
+        <WarehouseForm
+            selectedWarehouseId={selectedWarehouseID}
+            handleBack={toggleEditingWarehouse}
+        />
     ) : (
         <div className="warehouse-list">
             <TitleSearch
@@ -70,7 +79,7 @@ function WarehouseList() {
                 ]}
                 records={warehouses}
                 linkToDetailsPage={"/warehouses"}
-                onEdit={id => console.log(`edited ${id}`)}
+                onEdit={toggleEditingWarehouse}
                 onDelete={handleDeleteClick}
             />
 

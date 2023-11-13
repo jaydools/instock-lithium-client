@@ -1,12 +1,12 @@
 import React from "react";
-import "./WarehouseAdd.scss";
+import "./WarehouseForm.scss";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Title from "../Title/Title";
 import Error from "../../Assets/Images/error-24px.svg";
 
-function WarehouseAdd({ handleBack }) {
+function WarehouseForm({ handleBack, selectedWarehouseId }) {
     const [warehouse_name, setwarehouse_name] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -101,16 +101,51 @@ function WarehouseAdd({ handleBack }) {
         }
 
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/warehouses`, fields);
+            if (selectedWarehouseId) {
+                await axios.put(
+                    `${process.env.REACT_APP_BACKEND_URL}/api/warehouses/${selectedWarehouseId}`,
+                    fields,
+                );
+            } else {
+                await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/warehouses`, fields);
+            }
         } catch (error) {
-            console.log("Failed to post new warehouse:", error);
+            console.log(`Failed to ${selectedWarehouseId ? "PUT" : "POST new"} warehouse:`, error);
         }
         handleBack();
     }
 
+    useEffect(() => {
+        if (!selectedWarehouseId) return;
+
+        const setFormDefaults = async () => {
+            try {
+                const { data } = await axios.get(
+                    `${process.env.REACT_APP_BACKEND_URL}/api/warehouses/${selectedWarehouseId}`,
+                );
+
+                setwarehouse_name(data.warehouse_name);
+                setAddress(data.address);
+                setCity(data.city);
+                setCountry(data.country);
+                setContact_name(data.contact_name);
+                setContact_Position(data.contact_position);
+                setContact_phone(data.contact_phone);
+                setContact_email(data.contact_email);
+            } catch (error) {
+                console.log(`Failed to get warehouse data for id ${selectedWarehouseId}.`, error);
+                handleBack();
+            }
+        };
+        setFormDefaults();
+    }, [selectedWarehouseId]);
+
     return (
         <form noValidate="noValidate" className="whcard " onSubmit={handleAddWarehouse}>
-            <Title pageTitle="Add Warehouse" handleBack={handleBack} />
+            <Title
+                pageTitle={selectedWarehouseId ? "Edit Warehouse" : "Add Warehouse"}
+                handleBack={handleBack}
+            />
             <div className="whcard__content-wrp">
                 <div className="whcard__details-wrp ">
                     <div className="whcard__sub-header ">Warehouse Details</div>
@@ -286,11 +321,11 @@ function WarehouseAdd({ handleBack }) {
                     Cancel
                 </button>
                 <button type="submit" className="whcard__add">
-                    + Add Warehouse
+                    {selectedWarehouseId ? "Save" : "+ Add Warehouse"}
                 </button>
             </div>
         </form>
     );
 }
 
-export default WarehouseAdd;
+export default WarehouseForm;
