@@ -6,26 +6,24 @@ import { Link } from "react-router-dom";
 
 function Title({ pageTitle, edit, handleBack, handleEdit }) {
     return (
-        <div>
-            <div className="title">
-                <div className="title__left">
-                    {handleBack && (
-                        <>
-                            <button className="title__back" type="button" onClick={handleBack}>
-                                <img src={back} alt="back button" />
-                            </button>
-                        </>
-                    )}
-                    <h1 className="title__header">{pageTitle}</h1>
-                </div>
-                <div>
-                    {handleEdit && (
-                        <button className="title__right" type="button" onClick={handleEdit}>
-                            <Edit className="title__edit" />
-                            <p className="title__right--hidden">{edit}</p>
+        <div className="title">
+            <div className="title__left">
+                {handleBack && (
+                    <>
+                        <button className="title__back" type="button" onClick={handleBack}>
+                            <img src={back} alt="back button" />
                         </button>
-                    )}
-                </div>
+                    </>
+                )}
+                <h1 className="title__header">{pageTitle}</h1>
+            </div>
+            <div>
+                {handleEdit && (
+                    <button className="title__right" type="button" onClick={handleEdit}>
+                        <Edit className="title__edit" />
+                        <p className="title__right--hidden">{edit}</p>
+                    </button>
+                )}
             </div>
         </div>
     );

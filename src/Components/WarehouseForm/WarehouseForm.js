@@ -143,7 +143,7 @@ function WarehouseForm({ handleBack, selectedWarehouseId }) {
     return (
         <form noValidate="noValidate" className="whcard " onSubmit={handleAddWarehouse}>
             <Title
-                pageTitle={selectedWarehouseId ? "Edit Warehouse" : "Add Warehouse"}
+                pageTitle={selectedWarehouseId ? "Edit Warehouse" : "Add New Warehouse"}
                 handleBack={handleBack}
             />
             <div className="whcard__content-wrp">
@@ -176,7 +176,7 @@ function WarehouseForm({ handleBack, selectedWarehouseId }) {
                             value={address}
                             onBlur={() => validateField("address", address)}
                             type="text"
-                            placeholder="Street Adress"
+                            placeholder="Street Address"
                             name="address"
                             className={`whcard__input ${
                                 failed.address ? "whcard__input--failed" : ""

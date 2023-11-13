@@ -7,6 +7,7 @@ import Title from "../Title/Title";
 import "./WarehouseDetails.scss";
 import WarehouseForm from "../WarehouseForm/WarehouseForm";
 import InventoryItemDelete from "../InventoryItemDelete/InventoryItemDelete";
+import InventoryItemForm from "../InventoryItemForm/InventoryItemForm";
 
 function WarehouseDetails({ warehouseId }) {
     const [warehouseFromId, setWarehouseFromId] = useState({});
@@ -17,6 +18,12 @@ function WarehouseDetails({ warehouseId }) {
     const [selectedInventoryID, setSelectedInventoryID] = useState(null);
 
     const toggleEditingWarehouse = () => setEditingWarehouse(!editingWarehouse);
+    const [editingItem, setEditingItem] = useState(false);
+
+    const toggleEditingItem = itemId => {
+        setSelectedInventoryID(itemId ? itemId : null);
+        setEditingItem(!editingItem);
+    };
 
     const handleDeleteClick = id => {
         setSelectedInventoryID(id);
@@ -44,10 +51,12 @@ function WarehouseDetails({ warehouseId }) {
                 console.log(error);
             }
         };
-        if (editingWarehouse) return;
-        fetchWarehouseFromId(warehouseId || 1);
-        fetchWarehouseIdInventories(warehouseId);
-    }, [warehouseId, editingWarehouse]);
+
+        if (!editingItem && !editingWarehouse) {
+            fetchWarehouseFromId(warehouseId || 1);
+            fetchWarehouseIdInventories(warehouseId);
+        }
+    }, [warehouseId, editingWarehouse, editingItem]);
 
     return (
         <>
@@ -55,6 +64,11 @@ function WarehouseDetails({ warehouseId }) {
                 <WarehouseForm
                     handleBack={toggleEditingWarehouse}
                     selectedWarehouseId={warehouseId}
+                />
+            ) : editingItem ? (
+                <InventoryItemForm
+                    handleBack={toggleEditingItem}
+                    selectedInventoryID={selectedInventoryID}
                 />
             ) : warehouseFromId && warehouseIdInventory ? (
                 <>
@@ -65,7 +79,7 @@ function WarehouseDetails({ warehouseId }) {
                         handleEdit={toggleEditingWarehouse}
                     />
                     <div className="warehouse-details-container">
-                        <div>
+                        <div className="warehouse-container">
                             <h4 className="warehouse-details-container__title">
                                 WAREHOUSE ADDRESS:
                             </h4>
@@ -107,7 +121,7 @@ function WarehouseDetails({ warehouseId }) {
                         displayNamesDesktop={["inventory item", "category", "Status", "quantity"]}
                         records={warehouseIdInventory}
                         linkToDetailsPage={"/inventory"}
-                        onEdit={id => console.log(`edited ${id}`)}
+                        onEdit={toggleEditingItem}
                         onDelete={handleDeleteClick}
                     />
 
