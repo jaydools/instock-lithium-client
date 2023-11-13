@@ -226,7 +226,7 @@ function InventoryItemForm({ handleBack, selectedInventoryID }) {
                             Out of stock
                         </label>
                     </div>
-                    <label htmlFor="" className="item-form__label">
+                    <label className="item-form__label">
                         Warehouse
                         <select
                             name="warehouse_id"
