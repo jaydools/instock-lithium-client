@@ -3,4 +3,115 @@
 @use "../../Styles/variables" as *;
 
 .item-form {
+    &__form {
+        border-top: 1px solid $cloud;
+        @include tablet {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    &__fieldset {
+        @include main-padding;
+        &:nth-of-type(2) {
+            border-top: 1px solid $cloud;
+            padding-bottom: 1rem;
+        }
+        @include tablet {
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            &:nth-of-type(2) {
+                border-top: none;
+                border-left: 1px solid $cloud;
+            }
+        }
+    }
+    &__buttons {
+        @include main-padding;
+        display: flex;
+        gap: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: rgba($light-grey, 70%);
+        @include tablet {
+            grid-column: 1 / 3;
+            justify-content: right;
+        }
+    }
+    &__button {
+        &--cancel {
+            @include button("secondary");
+        }
+        &--update {
+            @include button;
+        }
+    }
+    &__text {
+        @include field;
+    }
+    &__textarea {
+        @include field;
+        resize: none;
+        height: 7.5rem;
+    }
+    &__select {
+        @include field;
+        -webkit-appearance: none;
+        background-image: url("../../Assets/Images/arrow_drop_down-24px.svg");
+        background-repeat: no-repeat;
+        background-position: bottom 50% right 0.75rem;
+    }
+    &__subheading {
+        @include mobileH2;
+        @include tablet {
+            @include desktopH2;
+        }
+    }
+    &__label {
+        @include mobileH3;
+        position: relative;
+        display: grid;
+        padding-top: 1.25rem;
+        gap: 4px;
+        @include tablet {
+            @include desktopH3;
+        }
+    }
+    &__radio-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        & > .item-form__label {
+            grid-column: 1 / 3;
+        }
+    }
+    &__radio-text {
+        @include mobileP2;
+        display: flex;
+        gap: 4px;
+        color: $slate;
+        @include tablet {
+            @include desktopP2;
+        }
+
+        &:has(:checked) {
+            color: $instock-black;
+        }
+    }
+    &__invalid {
+        @include mobileP3;
+        position: absolute;
+        bottom: -18px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: $red;
+        @include tablet {
+            @include desktopP3;
+        }
+    }
+    &__icon {
+        width: 16px;
+        height: 16px;
+    }
 }
