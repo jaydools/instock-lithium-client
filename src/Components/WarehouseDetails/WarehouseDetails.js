@@ -5,15 +5,19 @@ import axios from "axios";
 import Grid from "../Grid/Grid";
 import Title from "../Title/Title";
 import "./WarehouseDetails.scss";
+import WarehouseForm from "../WarehouseForm/WarehouseForm";
 import InventoryItemDelete from "../InventoryItemDelete/InventoryItemDelete";
 import InventoryItemForm from "../InventoryItemForm/InventoryItemForm";
 
 function WarehouseDetails({ warehouseId }) {
     const [warehouseFromId, setWarehouseFromId] = useState({});
     const [warehouseIdInventory, setWarehouseIdInventory] = useState([]);
+    const [editingWarehouse, setEditingWarehouse] = useState(false);
     const navigate = useNavigate();
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [selectedInventoryID, setSelectedInventoryID] = useState(null);
+
+    const toggleEditingWarehouse = () => setEditingWarehouse(!editingWarehouse);
     const [editingItem, setEditingItem] = useState(false);
 
     const toggleEditingItem = itemId => {
@@ -48,15 +52,20 @@ function WarehouseDetails({ warehouseId }) {
             }
         };
 
-        if (!editingItem) {
+        if (!editingItem && !editingWarehouse) {
             fetchWarehouseFromId(warehouseId || 1);
             fetchWarehouseIdInventories(warehouseId);
         }
-    }, [warehouseId, editingItem]);
+    }, [warehouseId, editingWarehouse, editingItem]);
 
     return (
         <>
-            {editingItem ? (
+            {editingWarehouse ? (
+                <WarehouseForm
+                    handleBack={toggleEditingWarehouse}
+                    selectedWarehouseId={warehouseId}
+                />
+            ) : editingItem ? (
                 <InventoryItemForm
                     handleBack={toggleEditingItem}
                     selectedInventoryID={selectedInventoryID}
@@ -67,7 +76,7 @@ function WarehouseDetails({ warehouseId }) {
                         pageTitle={warehouseFromId.warehouse_name}
                         edit="Edit"
                         handleBack={() => navigate("/")}
-                        handleEdit={() => {}}
+                        handleEdit={toggleEditingWarehouse}
                     />
                     <div className="warehouse-details-container">
                         <div className="warehouse-container">

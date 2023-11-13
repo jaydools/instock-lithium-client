@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Grid from "../Grid/Grid";
 import TitleSearch from "../TitleSearch/TitleSearch";
-import "./WarehouseList.scss";
-import WarehouseAdd from "../WarehouseAdd/WarehouseAdd";
+import WarehouseForm from "../WarehouseForm/WarehouseForm";
 import WarehouseDelete from "../WarehouseDelete/WarehouseDelete";
+import "./WarehouseList.scss";
 
 function WarehouseList() {
     const [warehouses, setWarehouses] = useState([]);
@@ -17,6 +17,10 @@ function WarehouseList() {
     const toggleEditingWarehouse = warehouseId => {
         setSelectedWarehouseID(warehouseId ?? null);
         setEditingWarehouse(!editingWarehouse);
+    };
+    const handleDeleteClick = id => {
+        setSelectedWarehouseID(id);
+        setShowDeletePopup(true);
     };
 
     useEffect(() => {
@@ -49,15 +53,10 @@ function WarehouseList() {
         }
     }, [showDeletePopup, addingWarehouse, editingWarehouse]);
 
-    const handleDeleteClick = id => {
-        setSelectedWarehouseID(id);
-        setShowDeletePopup(true);
-    };
-
     return addingWarehouse ? (
-        <WarehouseAdd handleBack={toggleAddingWarehouse} />
+        <WarehouseForm handleBack={toggleAddingWarehouse} />
     ) : editingWarehouse && selectedWarehouseID ? (
-        <WarehouseAdd
+        <WarehouseForm
             selectedWarehouseId={selectedWarehouseID}
             handleBack={toggleEditingWarehouse}
         />
