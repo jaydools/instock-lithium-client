@@ -47,6 +47,7 @@ function InventoryItemForm({ handleBack, selectedInventoryID }) {
     const handleFieldChange = (field, value) => {
         const newFields = { ...fields };
         newFields[field] = value;
+        if (field === "quantity" && value === "0") newFields.status = "Out of Stock";
         setFields({ ...newFields });
     };
 
@@ -64,7 +65,7 @@ function InventoryItemForm({ handleBack, selectedInventoryID }) {
             item_name: fields.item_name,
             description: fields.description,
             category: fields.category,
-            status: fields.status,
+            status: fields.quantity === "0" ? "Out of Stock" : fields.status,
             quantity: fields.status === "In Stock" ? parseInt(fields.quantity) : 0,
             warehouse_id: parseInt(fields.warehouse_id),
         };
