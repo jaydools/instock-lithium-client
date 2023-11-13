@@ -6,6 +6,7 @@ import Grid from "../Grid/Grid";
 import Title from "../Title/Title";
 import "./WarehouseDetails.scss";
 import InventoryItemDelete from "../InventoryItemDelete/InventoryItemDelete";
+import InventoryItemForm from "../InventoryItemForm/InventoryItemForm";
 
 function WarehouseDetails({ warehouseId }) {
     const [warehouseFromId, setWarehouseFromId] = useState({});
@@ -13,6 +14,12 @@ function WarehouseDetails({ warehouseId }) {
     const navigate = useNavigate();
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [selectedInventoryID, setSelectedInventoryID] = useState(null);
+    const [editingItem, setEditingItem] = useState(false);
+
+    const toggleEditingItem = itemId => {
+        setSelectedInventoryID(itemId ? itemId : null);
+        setEditingItem(!editingItem);
+    };
 
     const handleDeleteClick = id => {
         setSelectedInventoryID(id);
@@ -40,13 +47,21 @@ function WarehouseDetails({ warehouseId }) {
                 console.log(error);
             }
         };
-        fetchWarehouseFromId(warehouseId || 1);
-        fetchWarehouseIdInventories(warehouseId);
-    }, [warehouseId]);
+
+        if (!editingItem) {
+            fetchWarehouseFromId(warehouseId || 1);
+            fetchWarehouseIdInventories(warehouseId);
+        }
+    }, [warehouseId, editingItem]);
 
     return (
         <>
-            {warehouseFromId && warehouseIdInventory ? (
+            {editingItem ? (
+                <InventoryItemForm
+                    handleBack={toggleEditingItem}
+                    selectedInventoryID={selectedInventoryID}
+                />
+            ) : warehouseFromId && warehouseIdInventory ? (
                 <>
                     <Title
                         pageTitle={warehouseFromId.warehouse_name}
@@ -97,7 +112,7 @@ function WarehouseDetails({ warehouseId }) {
                         displayNamesDesktop={["inventory item", "category", "Status", "quantity"]}
                         records={warehouseIdInventory}
                         linkToDetailsPage={"/inventory"}
-                        onEdit={id => console.log(`edited ${id}`)}
+                        onEdit={toggleEditingItem}
                         onDelete={handleDeleteClick}
                     />
 
