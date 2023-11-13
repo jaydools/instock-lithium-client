@@ -115,14 +115,20 @@
         font-weight: 600;
         &:hover {
             text-decoration: underline;
+            &::after {
+                left: 4px;
+            }
         }
         &::after {
+            position: relative;
+            left: 0;
             content: "";
             width: 24px;
             height: 24px;
             background: no-repeat url("../../Assets/Images/chevron_right-24px.svg");
             background-position: center;
             background-size: contain;
+            transition: 0.15s ease-out;
         }
     }
     &__buttons {
