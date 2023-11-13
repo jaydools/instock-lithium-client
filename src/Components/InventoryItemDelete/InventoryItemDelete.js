@@ -36,14 +36,14 @@ function InventoryItemDelete({ inventoryData, onClose, endpoint }) {
                             the inventory list. You won’t be able to undo this action.
                         </p>
                     </div>
-                    <div className="delete-button">
-                        <div to="/inventory-list" className="delete-button__link">
-                            <button className="delete-button__cancel" onClick={onClose}>
+                    <div className="inv-delete-button">
+                        <div to="/inventory-list" className="inv-delete-button__link">
+                            <button className="inv-delete-button__cancel" onClick={onClose}>
                                 Cancel
                             </button>
                         </div>
-                        <div to="/inventory-list" className="delete-button__link">
-                            <button className="delete-button__delete" onClick={handleDelete}>
+                        <div to="/inventory-list" className="inv-delete-button__link">
+                            <button className="inv-delete-button__delete" onClick={handleDelete}>
                                 Delete
                             </button>
                         </div>
