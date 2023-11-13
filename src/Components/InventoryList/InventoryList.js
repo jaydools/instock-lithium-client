@@ -10,7 +10,10 @@ function InventoryList() {
     const [items, setItems] = useState([]);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [selectedInventoryID, setSelectedInventoryID] = useState(null);
+    const [addingItem, setAddingItem] = useState(false);
     const [editingItem, setEditingItem] = useState(false);
+
+    const toggleAddingItem = () => setAddingItem(!addingItem);
 
     const toggleEditingItem = itemId => {
         setSelectedInventoryID(itemId ? itemId : null);
@@ -29,14 +32,16 @@ function InventoryList() {
             );
             setItems(data);
         };
-        if (!showDeletePopup && !editingItem) {
+        if (!showDeletePopup && !editingItem && !addingItem) {
             getItems();
         }
-    }, [showDeletePopup, editingItem]);
+    }, [showDeletePopup, editingItem, addingItem]);
 
     return (
         <div className="inventory-list">
-            {editingItem ? (
+            {addingItem ? (
+                <InventoryItemForm handleBack={toggleAddingItem} />
+            ) : editingItem ? (
                 <InventoryItemForm
                     handleBack={toggleEditingItem}
                     selectedInventoryID={selectedInventoryID}
@@ -47,7 +52,7 @@ function InventoryList() {
                         pageTitle="Inventory"
                         handleSearch={() => {}}
                         buttonText="+ Add New Item"
-                        handleButton={() => {}}
+                        handleButton={toggleAddingItem}
                     />
                     <Grid
                         fieldNames={[
