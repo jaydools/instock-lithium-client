@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import Title from "../Title/Title";
 import "./InventoryItemDetails.scss";
 import axios from "axios";
+import InventoryItemForm from "../InventoryItemForm/InventoryItemForm";
 
 function InventoryItemDetails({ id }) {
     const [item, setItem] = useState({});
     const navigate = useNavigate();
+    const [editingItem, setEditingItem] = useState(false);
+
+    const toggleEditingItem = () => setEditingItem(!editingItem);
 
     useEffect(() => {
         async function getItem() {
@@ -15,16 +19,20 @@ function InventoryItemDetails({ id }) {
             );
             setItem(data);
         }
-        getItem();
-    }, [id]);
+        if (!editingItem) {
+            getItem();
+        }
+    }, [id, editingItem]);
 
-    return item.description ? (
+    return editingItem ? (
+        <InventoryItemForm handleBack={toggleEditingItem} selectedInventoryID={id} />
+    ) : item.description ? (
         <>
             <Title
                 pageTitle={item.item_name}
                 edit="Edit"
                 handleBack={() => navigate(-1)}
-                handleEdit={() => {}}
+                handleEdit={toggleEditingItem}
             />
             <div className="item-details-container">
                 <div className="leftside">
