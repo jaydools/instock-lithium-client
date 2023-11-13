@@ -5,11 +5,15 @@ import axios from "axios";
 import Grid from "../Grid/Grid";
 import Title from "../Title/Title";
 import "./WarehouseDetails.scss";
+import WarehouseForm from "../WarehouseForm/WarehouseForm";
 
 function WarehouseDetails({ warehouseId }) {
     const [warehouseFromId, setWarehouseFromId] = useState({});
     const [warehouseIdInventory, setWarehouseIdInventory] = useState([]);
+    const [editingWarehouse, setEditingWarehouse] = useState(false);
     const navigate = useNavigate();
+
+    const toggleEditingWarehouse = () => setEditingWarehouse(!editingWarehouse);
 
     useEffect(() => {
         const fetchWarehouseFromId = async warehouseId => {
@@ -32,19 +36,25 @@ function WarehouseDetails({ warehouseId }) {
                 console.log(error);
             }
         };
+        if (editingWarehouse) return;
         fetchWarehouseFromId(warehouseId || 1);
         fetchWarehouseIdInventories(warehouseId);
-    }, [warehouseId]);
+    }, [warehouseId, editingWarehouse]);
 
     return (
         <>
-            {warehouseFromId && warehouseIdInventory ? (
+            {editingWarehouse ? (
+                <WarehouseForm
+                    handleBack={toggleEditingWarehouse}
+                    selectedWarehouseId={warehouseId}
+                />
+            ) : warehouseFromId && warehouseIdInventory ? (
                 <>
                     <Title
                         pageTitle={warehouseFromId.warehouse_name}
                         edit="Edit"
                         handleBack={() => navigate("/")}
-                        handleEdit={() => {}}
+                        handleEdit={toggleEditingWarehouse}
                     />
                     <div className="warehouse-details-container">
                         <div className="warehouse-container">
