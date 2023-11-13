@@ -58,6 +58,7 @@
     &__select {
         @include field;
         -webkit-appearance: none;
+        appearance: none;
         background-image: url("../../Assets/Images/arrow_drop_down-24px.svg");
         background-repeat: no-repeat;
         background-position: bottom 50% right 0.75rem;
