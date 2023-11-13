@@ -45,8 +45,8 @@
 }
 
 .warehouse-container {
-    width: 40%;
     @include tablet {
+        width: 40%;
         border-right: 1px solid $cloud;
         margin-right: 2rem;
         padding-right: 2rem;
