@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import InventoryItemDetails from "../../Components/InventoryItemDetails/InventoryItemDetails";
 import "./InventoryPage.scss";
 import InventoryList from "../../Components/InventoryList/InventoryList";
+import InventoryItemDelete from "../../Components/InventoryItemDelete/InventoryItemDelete";
 
 function InventoryPage() {
     const { id } = useParams();

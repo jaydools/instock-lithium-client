@@ -6,14 +6,22 @@ import Grid from "../Grid/Grid";
 import Title from "../Title/Title";
 import "./WarehouseDetails.scss";
 import WarehouseForm from "../WarehouseForm/WarehouseForm";
+import InventoryItemDelete from "../InventoryItemDelete/InventoryItemDelete";
 
 function WarehouseDetails({ warehouseId }) {
     const [warehouseFromId, setWarehouseFromId] = useState({});
     const [warehouseIdInventory, setWarehouseIdInventory] = useState([]);
     const [editingWarehouse, setEditingWarehouse] = useState(false);
     const navigate = useNavigate();
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [selectedInventoryID, setSelectedInventoryID] = useState(null);
 
     const toggleEditingWarehouse = () => setEditingWarehouse(!editingWarehouse);
+
+    const handleDeleteClick = id => {
+        setSelectedInventoryID(id);
+        setShowDeletePopup(true);
+    };
 
     useEffect(() => {
         const fetchWarehouseFromId = async warehouseId => {
@@ -57,7 +65,7 @@ function WarehouseDetails({ warehouseId }) {
                         handleEdit={toggleEditingWarehouse}
                     />
                     <div className="warehouse-details-container">
-                        <div className="warehouse-container">
+                        <div>
                             <h4 className="warehouse-details-container__title">
                                 WAREHOUSE ADDRESS:
                             </h4>
@@ -93,24 +101,23 @@ function WarehouseDetails({ warehouseId }) {
                             </div>
                         </div>
                     </div>
-                    {!warehouseIdInventory.length ? (
-                        <p className="empty-inventory-message">
-                            This warehouse is loading, or it has no items.
-                        </p>
-                    ) : (
-                        <Grid
-                            fieldNames={["item_name", "category", "status", "quantity"]}
-                            displayNamesMobile={["inventory item", "category", "Status", "Qty"]}
-                            displayNamesDesktop={[
-                                "inventory item",
-                                "category",
-                                "Status",
-                                "quantity",
-                            ]}
-                            records={warehouseIdInventory}
-                            linkToDetailsPage={"/inventory"}
-                            onEdit={id => console.log(`edited ${id}`)}
-                            onDelete={id => console.log(`deleted ${id}`)}
+                    <Grid
+                        fieldNames={["item_name", "category", "status", "quantity"]}
+                        displayNamesMobile={["inventory item", "category", "Status", "Qty"]}
+                        displayNamesDesktop={["inventory item", "category", "Status", "quantity"]}
+                        records={warehouseIdInventory}
+                        linkToDetailsPage={"/inventory"}
+                        onEdit={id => console.log(`edited ${id}`)}
+                        onDelete={handleDeleteClick}
+                    />
+
+                    {showDeletePopup && (
+                        <InventoryItemDelete
+                            onClose={() => setShowDeletePopup(false)}
+                            inventoryData={warehouseIdInventory.find(
+                                item => item.id === selectedInventoryID,
+                            )}
+                            endpoint={`${process.env.REACT_APP_BACKEND_URL}/api/inventories/${selectedInventoryID}`}
                         />
                     )}
                 </>
